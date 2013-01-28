@@ -12,6 +12,7 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.PreparedQuery;
 
+import fr.cpe.ha.jbbflight.models.City;
 import fr.cpe.ha.jbbflight.models.Flight;
 
 /**
@@ -61,6 +62,29 @@ public class DALFlight {
 			retFlights.add(new Flight(flight));
 		}
 		
+		return retFlights;
+	}
+	
+	/**
+	 * Get all Flight with specified parameters.
+	 * 
+	 * @param filters
+	 * @return
+	 */
+	public List<Flight> GetFlightWithParams(List<FilterPredicate> filters){
+		
+		Query q = new Query("Flight");
+		
+		for(FilterPredicate filter : filters)
+			q.setFilter(filter);
+	
+		PreparedQuery pq = datastore.prepare(q);
+	
+		ArrayList<Flight> retFlights = new ArrayList<Flight>();
+		for(Entity Flight : pq.asList(FetchOptions.Builder.withDefaults())){
+			retFlights.add(new Flight(Flight));
+		}
+	
 		return retFlights;
 	}
 	
