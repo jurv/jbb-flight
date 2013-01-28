@@ -2,6 +2,8 @@ package fr.cpe.ha.jbbflight.models;
 
 import java.util.Date;
 
+import com.google.appengine.api.datastore.Entity;
+
 
 /**
  * Keep tracks of flights researches done by a user
@@ -44,6 +46,38 @@ public class User_to_FlightSearch {
 	 */
 	private int utf_responses_count;
 
+	/**
+	 * Construct a User_to_FlightSearch object from a datastore entity User_to_FlightSearch
+	 */
+	public User_to_FlightSearch(Entity utf) {
+		this.utf_date            = (Date)utf.getProperty("utf_date");
+		this.utf_date_departure  = (Date)utf.getProperty("utf_date_departure");
+		this.utf_going_to        = (Integer)utf.getProperty("utf_going_to");
+		this.utf_id              = (Integer)utf.getProperty("utf_id");
+		this.utf_is_deleted      = (Boolean)utf.getProperty("utf_is_deleted");
+		this.utf_leaving_from    = (Integer)utf.getProperty("utf_leaving_from");
+		this.utf_responses_count = (Integer)utf.getProperty("utf_responses_count");
+	}
+	
+	/**
+	 * Return the User_to_FlightSearch model as a User_to_FlightSearch datastore entity model
+	 * @return
+	 */
+	public Entity toDatastoreEntity() {
+		
+		Entity user_to_flightSearch = new Entity("User_to_FlightSearch", this.utf_id);
+		
+		user_to_flightSearch.setProperty("utf_date", this.utf_date);
+		user_to_flightSearch.setProperty("utf_date_departure", this.utf_date_departure);
+		user_to_flightSearch.setProperty("utf_going_to", this.utf_going_to);
+		user_to_flightSearch.setProperty("utf_id", this.utf_id);
+		user_to_flightSearch.setProperty("utf_is_deleted", this.utf_is_deleted);
+		user_to_flightSearch.setProperty("utf_leaving_from", this.utf_leaving_from);
+		user_to_flightSearch.setProperty("utf_responses_count", this.utf_responses_count);
+		
+		return user_to_flightSearch;
+	}
+	
 	/**
 	 * @return the utf_id
 	 */
