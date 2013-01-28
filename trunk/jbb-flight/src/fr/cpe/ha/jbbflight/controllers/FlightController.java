@@ -1,6 +1,13 @@
 package fr.cpe.ha.jbbflight.controllers;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import fr.cpe.ha.jbbflight.dataaccesslayout.DALFlight;
 import fr.cpe.ha.jbbflight.models.Flight;
@@ -9,25 +16,58 @@ import fr.cpe.ha.jbbflight.models.Flight;
  * Flights' Controller
  * @author Julien Rouvier
  */
-public class FlightController {
+public class FlightController extends HttpServlet {
 
-	/**
-	 * Return all flights
-	 * @return List<Flight> All flights registered in the datastore
-	 */
-	public List<Flight> getFlights(){
-		DALFlight dalFlight = DALFlight.getInstance();
-		return dalFlight.GetAllFlights();
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html");
+		
+		String action = req.getParameter("action");
+		
+		if("new".equals(action)){
+			this.newFlight(req, resp);
+		}else if("view".equals(action)){
+			this.viewFlight(req, resp);
+		}else if("edit".equals(action)){
+			this.editFlight(req, resp);
+		}else if("list".equals(action)){
+			this.listFlight(req, resp);
+		}
 	}
 	
-	/**
-	 * Return a flight
-	 * @param idUser The id of the flight
-	 * @return Flight The flight
-	 */
-	public Flight getFlight(int idFlight){
-		DALFlight dalFlight = DALFlight.getInstance();
-		return dalFlight.GetFlightById(idFlight);
+	public void newFlight(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/flightnew.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void viewFlight(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/flightview.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editFlight(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/flightedit.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void listFlight(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/flightlist.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

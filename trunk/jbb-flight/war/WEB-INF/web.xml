@@ -4,9 +4,19 @@
 		<servlet-class>fr.cpe.ha.jbbflight.controllers.UserController</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>FlightController</servlet-name>
+		<servlet-class>fr.cpe.ha.jbbflight.controllers.FlightController</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>UserController</servlet-name>
-		<url-pattern>/user/new</url-pattern>
+		<url-pattern>/user</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>FlightController</servlet-name>
+		<url-pattern>/flight</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>
