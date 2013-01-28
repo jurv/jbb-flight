@@ -36,9 +36,9 @@ public class City {
 	 * @param cty
 	 */
 	public City (Entity cty) {
-		this.cty_id 		= (Integer)cty.getProperty(this.CITY_ID);
-		this.cty_is_deleted = (Boolean)cty.getProperty(this.CITY_IS_DELETED);
-		this.cty_label      = (String)cty.getProperty(this.CITY_LABEL);
+		this.cty_id 		= (Integer)cty.getProperty(CITY_ID);
+		this.cty_is_deleted = (Boolean)cty.getProperty(CITY_IS_DELETED);
+		this.cty_label      = (String)cty.getProperty(CITY_LABEL);
 	}
 	
 	/**
@@ -47,10 +47,10 @@ public class City {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity city = new Entity(this.CITY, this.cty_id);
-		city.setProperty(this.CITY_ID, this.cty_id);
-		city.setProperty(this.CITY_IS_DELETED, this.cty_is_deleted);
-		city.setProperty(this.CITY_LABEL, this.cty_label);
+		Entity city = new Entity(CITY, this.cty_id);
+		city.setProperty(CITY_ID, this.cty_id);
+		city.setProperty(CITY_IS_DELETED, this.cty_is_deleted);
+		city.setProperty(CITY_LABEL, this.cty_label);
 		
 		return city;
 	}

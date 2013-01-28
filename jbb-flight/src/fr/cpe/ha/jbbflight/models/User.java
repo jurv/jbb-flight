@@ -92,18 +92,18 @@ public class User {
 	 * @param usr
 	 */
 	public User(Entity usr) {
-		this.usr_birthdate 				= (Date)usr.getProperty(this.USER_BIRTHDATE);
-		this.usr_date_creation 			= (Date)usr.getProperty(this.USER_DATE_CREATION);
-		this.usr_date_delete 			= (Date)usr.getProperty(this.USER_DATE_DELETE);
-		this.usr_email 					= (String)usr.getProperty(this.USER_EMAIL);
-		this.usr_firstname 				= (String)usr.getProperty(this.USER_FIRSTNAME);
-		this.usr_lastname 				= (String)usr.getProperty(this.USER_LASTNAME);
-		this.usr_id 					= (Integer)usr.getProperty(this.USER_ID);
-		this.usr_is_admin 				= (Boolean)usr.getProperty(this.USER_IS_ADMIN);
-		this.usr_is_deleted 			= (Boolean)usr.getProperty(this.USER_IS_DELETED);
-		this.usr_is_password_confirmed 	= (Boolean)usr.getProperty(this.USER_IS_PASSWORD_CONFIRMED);
-		this.usr_login 					= (String)usr.getProperty(this.USER_LOGIN);
-		this.usr_password 				= (String)usr.getProperty(this.USER_PASSWORD);
+		this.usr_birthdate 				= (Date)usr.getProperty(USER_BIRTHDATE);
+		this.usr_date_creation 			= (Date)usr.getProperty(USER_DATE_CREATION);
+		this.usr_date_delete 			= (Date)usr.getProperty(USER_DATE_DELETE);
+		this.usr_email 					= (String)usr.getProperty(USER_EMAIL);
+		this.usr_firstname 				= (String)usr.getProperty(USER_FIRSTNAME);
+		this.usr_lastname 				= (String)usr.getProperty(USER_LASTNAME);
+		this.usr_id 					= (Integer)usr.getProperty(USER_ID);
+		this.usr_is_admin 				= (Boolean)usr.getProperty(USER_IS_ADMIN);
+		this.usr_is_deleted 			= (Boolean)usr.getProperty(USER_IS_DELETED);
+		this.usr_is_password_confirmed 	= (Boolean)usr.getProperty(USER_IS_PASSWORD_CONFIRMED);
+		this.usr_login 					= (String)usr.getProperty(USER_LOGIN);
+		this.usr_password 				= (String)usr.getProperty(USER_PASSWORD);
 	}
 	
 	/**
@@ -112,19 +112,19 @@ public class User {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity user = new Entity(this.USER, this.usr_id);
-		user.setProperty(this.USER_ID, this.usr_id);
-		user.setProperty(this.USER_BIRTHDATE, this.usr_birthdate);
-		user.setProperty(this.USER_DATE_CREATION, this.usr_date_creation);
-		user.setProperty(this.USER_DATE_DELETE, this.usr_date_delete);
-		user.setProperty(this.USER_EMAIL, this.usr_email);
-		user.setProperty(this.USER_FIRSTNAME, this.usr_firstname);
-		user.setProperty(this.USER_LASTNAME, this.usr_lastname);
-		user.setProperty(this.USER_IS_ADMIN, this.usr_is_admin);
-		user.setProperty(this.USER_IS_DELETED, this.usr_is_deleted);
-		user.setProperty(this.USER_IS_PASSWORD_CONFIRMED, this.usr_is_password_confirmed);
-		user.setProperty(this.USER_LOGIN, this.usr_login);
-		user.setProperty(this.USER_PASSWORD, this.usr_password);
+		Entity user = new Entity(USER, this.usr_id);
+		user.setProperty(USER_ID, this.usr_id);
+		user.setProperty(USER_BIRTHDATE, this.usr_birthdate);
+		user.setProperty(USER_DATE_CREATION, this.usr_date_creation);
+		user.setProperty(USER_DATE_DELETE, this.usr_date_delete);
+		user.setProperty(USER_EMAIL, this.usr_email);
+		user.setProperty(USER_FIRSTNAME, this.usr_firstname);
+		user.setProperty(USER_LASTNAME, this.usr_lastname);
+		user.setProperty(USER_IS_ADMIN, this.usr_is_admin);
+		user.setProperty(USER_IS_DELETED, this.usr_is_deleted);
+		user.setProperty(USER_IS_PASSWORD_CONFIRMED, this.usr_is_password_confirmed);
+		user.setProperty(USER_LOGIN, this.usr_login);
+		user.setProperty(USER_PASSWORD, this.usr_password);
 		
 		return user;
 	}
