@@ -65,6 +65,27 @@ public class DALUser_to_Connection {
 	}
 	
 	/**
+	 * Get all User_to_Connections with selected filters from the datastore.
+	 * @return
+	 */
+	public List<User_to_Connection> GetAllUser_to_Connections(List<FilterPredicate> filters) {
+		
+		Query q = new Query("User_to_Connection");
+		
+		for(FilterPredicate filter : filters)
+			q.setFilter(filter);
+		
+		PreparedQuery pq = datastore.prepare(q);
+		
+		ArrayList<User_to_Connection> retUser_to_Connections = new ArrayList<User_to_Connection>();
+		for(Entity user : pq.asList(FetchOptions.Builder.withDefaults())){
+			retUser_to_Connections.add(new User_to_Connection(user));
+		}
+		
+		return retUser_to_Connections;
+	}
+	
+	/**
 	 * Get the User_to_Connection corresponding with the identifier.
 	 * 
 	 * @param id User_to_Connection's Unique identifier

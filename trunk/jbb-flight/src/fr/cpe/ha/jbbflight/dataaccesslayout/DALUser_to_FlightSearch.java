@@ -59,6 +59,27 @@ public class DALUser_to_FlightSearch {
 	}
 	
 	/**
+	 * Get all User_to_FlightSearchs with specified filters from the datastore.
+	 * @return
+	 */
+	public List<User_to_FlightSearch> GetAllUser_to_FlightSearchs(List<FilterPredicate> filters) {
+		
+		Query q = new Query("User_to_FlightSearch");
+		
+		for(FilterPredicate filter : filters)
+			q.setFilter(filter);
+		
+		PreparedQuery pq = datastore.prepare(q);
+		
+		ArrayList<User_to_FlightSearch> retUser_to_FlightSearchs = new ArrayList<User_to_FlightSearch>();
+		for(Entity user_to_FlightSearch : pq.asList(FetchOptions.Builder.withDefaults())){
+			retUser_to_FlightSearchs.add(new User_to_FlightSearch(user_to_FlightSearch));
+		}
+		
+		return retUser_to_FlightSearchs;
+	}
+	
+	/**
 	 * Get the User_to_FlightSearch corresponding with the identifier.
 	 * 
 	 * @param id User_to_FlightSearch's Unique identifier

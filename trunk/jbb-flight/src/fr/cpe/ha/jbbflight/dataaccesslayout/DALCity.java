@@ -46,22 +46,45 @@ public class DALCity {
 	}
 	
 	/**
-	 * Get all undeleted Citys from the datastore.
+	 * Get all undeleted Cities from the datastore.
 	 * @return
 	 */
-	public List<City> GetAllCitys() {
+	public List<City> GetAllCities() {
 		
 		Query q = new Query("City")
 			.setFilter(new FilterPredicate("cty_is_deleted", FilterOperator.NOT_EQUAL, false));
 		
 		PreparedQuery pq = datastore.prepare(q);
 		
-		ArrayList<City> retCitys = new ArrayList<City>();
+		ArrayList<City> retCities = new ArrayList<City>();
 		for(Entity City : pq.asList(FetchOptions.Builder.withDefaults())){
-			retCitys.add(new City(City));
+			retCities.add(new City(City));
 		}
 		
-		return retCitys;
+		return retCities;
+	}
+	
+	/**
+	 * Get all Cities with specified parameters.
+	 * 
+	 * @param filters
+	 * @return
+	 */
+	public List<City> GetCitiesWithParams(List<FilterPredicate> filters){
+		
+		Query q = new Query("City");
+		
+		for(FilterPredicate filter : filters)
+			q.setFilter(filter);
+	
+		PreparedQuery pq = datastore.prepare(q);
+	
+		ArrayList<City> retCities = new ArrayList<City>();
+		for(Entity City : pq.asList(FetchOptions.Builder.withDefaults())){
+			retCities.add(new City(City));
+		}
+	
+		return retCities;
 	}
 	
 	/**

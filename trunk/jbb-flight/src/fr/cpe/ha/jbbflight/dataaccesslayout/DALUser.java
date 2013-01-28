@@ -65,6 +65,27 @@ public class DALUser {
 	}
 	
 	/**
+	 * Get all Users with the specified filters from the datastore.
+	 * @return
+	 */
+	public List<User> GetAllUsers(List<FilterPredicate> filters) {
+		
+		Query q = new Query("User");
+		
+		for(FilterPredicate filter : filters)
+			q.setFilter(filter);
+		
+		PreparedQuery pq = datastore.prepare(q);
+		
+		ArrayList<User> retUsers = new ArrayList<User>();
+		for(Entity user : pq.asList(FetchOptions.Builder.withDefaults())){
+			retUsers.add(new User(user));
+		}
+		
+		return retUsers;
+	}
+	
+	/**
 	 * Get the User corresponding with the identifier.
 	 * 
 	 * @param id User's Unique identifier
