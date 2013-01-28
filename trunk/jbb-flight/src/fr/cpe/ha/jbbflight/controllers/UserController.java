@@ -33,9 +33,20 @@ public class UserController extends HttpServlet {
 			this.editUser(req, resp);
 		}else if("list".equals(action)){
 			this.listUser(req, resp);
+		}else if("login".equals(action)){
+			this.loginUser(req, resp);
 		}
 	}
 	
+	private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userlogin.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}		
+	}
+
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html");
 		
