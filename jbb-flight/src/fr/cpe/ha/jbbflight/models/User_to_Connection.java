@@ -10,7 +10,15 @@ import com.google.appengine.api.datastore.Entity;
  * @author Benjamin Chastanier
  *
  */
+
 public class User_to_Connection {
+	
+	public final static String USER_TO_CONNECTION="User_to_Connection";
+	public final static String USER_TO_CONNECTION_DATE="_utc_date";
+	public final static String USER_TO_CONNECTION_ID="utc_id";
+	public final static String USER_TO_CONNECTION_IS_DELETED="utc_is_deleted";
+	
+	
 
 	/**
 	 * Unique User's login session trace identifier.
@@ -37,10 +45,10 @@ public class User_to_Connection {
 	 * @param utc
 	 */
 	public User_to_Connection(Entity utc) {
-		this.usr_id 		= (Integer)utc.getProperty("usr_id");
-		this.utc_date 		= (Date)utc.getProperty("utc_date");
-		this.utc_id     	= (Integer)utc.getProperty("utc_id");
-		this.utc_is_deleted = (Boolean)utc.getProperty("utc_is_deleted");
+		this.usr_id 		= (Integer)utc.getProperty(USER_ID);
+		this.utc_date 		= (Date)utc.getProperty(USER_TO_CONNECTION_DATE);
+		this.utc_id     	= (Integer)utc.getProperty(USER_TO_CONNECTION_ID);
+		this.utc_is_deleted = (Boolean)utc.getProperty(USER_TO_CONNECTION_IS_DELETED);
 	}
 	
 	/**
@@ -48,11 +56,11 @@ public class User_to_Connection {
 	 * @return
 	 */
 	public Entity toDatastoreEntity() {
-		Entity utc = new Entity("User_to_Connection", this.utc_id);
-		utc.setProperty("utc_id", this.utc_id);
-		utc.setProperty("usr_id", this.usr_id);
-		utc.setProperty("utc_date", this.utc_date);
-		utc.setProperty("utc_is_deleted", this.utc_is_deleted);
+		Entity utc = new Entity(USER_TO_CONNECTION, this.utc_id);
+		utc.setProperty(USER_TO_CONNECTION_ID, this.utc_id);
+		utc.setProperty(USER_ID, this.usr_id);
+		utc.setProperty(USER_TO_CONNECTION_DATE, this.utc_date);
+		utc.setProperty(USER_TO_CONNECTION_IS_DELETED, this.utc_is_deleted);
 		
 		return utc;
 	}
