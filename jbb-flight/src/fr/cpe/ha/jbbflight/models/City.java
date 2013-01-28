@@ -9,6 +9,12 @@ import com.google.appengine.api.datastore.Entity;
  */
 
 public class City {
+	
+	public final static String CITY = "City";
+	public final static String CITY_ID = "cty_id";
+	public final static String CITY_LABEL = "cty_label";
+	public final static String CITY_IS_DELETED = "cty_is_deleted";
+	
 	/*
 	 * Unique identifier of city
 	 */
@@ -30,9 +36,9 @@ public class City {
 	 * @param cty
 	 */
 	public City (Entity cty) {
-		this.cty_id 		= (Integer)cty.getProperty("cty_id");
-		this.cty_is_deleted = (Boolean)cty.getProperty("cty_is_deleted");
-		this.cty_label      = (String)cty.getProperty("cty_label");
+		this.cty_id 		= (Integer)cty.getProperty(this.CITY_ID);
+		this.cty_is_deleted = (Boolean)cty.getProperty(this.CITY_IS_DELETED);
+		this.cty_label      = (String)cty.getProperty(this.CITY_LABEL);
 	}
 	
 	/**
@@ -41,10 +47,10 @@ public class City {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity city = new Entity("City", this.cty_id);
-		city.setProperty("cty_id", this.cty_id);
-		city.setProperty("cty_is_delete", this.cty_is_deleted);
-		city.setProperty("cty_label", this.cty_label);
+		Entity city = new Entity(this.CITY, this.cty_id);
+		city.setProperty(this.CITY_ID, this.cty_id);
+		city.setProperty(this.CITY_IS_DELETED, this.cty_is_deleted);
+		city.setProperty(this.CITY_LABEL, this.cty_label);
 		
 		return city;
 	}
