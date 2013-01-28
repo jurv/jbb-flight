@@ -74,6 +74,15 @@ public class DALUser {
 	 */
 	public User GetUserById(int id) {
 		
+		Query q =  new Query("User")
+        	.setFilter(new FilterPredicate(
+        					Entity.KEY_RESERVED_PROPERTY,
+        					Query.FilterOperator.EQUAL, 
+        					id)
+                       );
+		PreparedQuery pq = datastore.prepare(q);
+
+		return new User(pq.asSingleEntity());
 	}
 	
 	public boolean AddUser(User usr) {
