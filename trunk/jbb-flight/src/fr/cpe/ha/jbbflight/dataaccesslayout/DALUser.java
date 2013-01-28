@@ -1,7 +1,6 @@
 package fr.cpe.ha.jbbflight.dataaccesslayout;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -9,7 +8,6 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -98,11 +96,28 @@ public class DALUser {
 		return true;
 	}
 	
+	/**
+	 * Update the user values in the datastore.
+	 * 
+	 * @param usr
+	 * @return
+	 */
 	public boolean UpdateUser(User usr) {
 		
+		return AddUser(usr);
 	}
 	
+	/**
+	 * Logical remove the user in the datastore. 
+	 * 
+	 * @param usr
+	 * @return
+	 */
 	public boolean RemoveUser(User usr) {
 		
+		usr.setUsr_is_deleted(true);
+		UpdateUser(usr);
+		
+		return true;
 	}
 }
