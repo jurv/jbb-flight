@@ -27,7 +27,7 @@ public class Flight {
 	/**
 	 * Id of the flight
 	 */
-	private int fgt_id;
+	private String fgt_id;
 
 	/**
 	 * City from where the plane will leave
@@ -74,7 +74,7 @@ public class Flight {
 	 * Construct a Flight object from a datastore entity flight
 	 */
 	public Flight(Entity fgt) {
-		this.fgt_id              = (Integer)fgt.getProperty(FLIGHT_ID);
+		this.fgt_id              = (String)fgt.getProperty(FLIGHT_ID);
 		this.fgt_date_arrival    = (Date)fgt.getProperty(FLIGHT_DATE_ARRIVAL);
 		this.fgt_date_departure  = (Date)fgt.getProperty(FLIGHT_DATE_DEPARTURE);
 		this.fgt_going_to_id     = (Integer)fgt.getProperty(FLIGHT_GOING_TO_ID);
@@ -93,7 +93,7 @@ public class Flight {
 		
 		Entity flight = new Entity(FLIGHT, this.fgt_id);
 		
-		flight.setProperty(FLIGHT_ID, this.fgt_id);
+		flight.setProperty(FLIGHT_ID, Flight.FLIGHT_ID);
 		flight.setProperty(FLIGHT_DATE_ARRIVAL, this.fgt_date_arrival);
 		flight.setProperty(FLIGHT_DATE_DEPARTURE, this.fgt_date_departure);
 		flight.setProperty(FLIGHT_LEAVING_FROM_ID, this.fgt_leaving_from_id);
@@ -109,14 +109,14 @@ public class Flight {
 	/**
 	 * @return the fgt_id
 	 */
-	public int getFgt_id() {
+	public String getFgt_id() {
 		return fgt_id;
 	}
 
 	/**
 	 * @param fgt_id the fgt_id to set
 	 */
-	public void setFgt_id(int fgt_id) {
+	public void setFgt_id(String fgt_id) {
 		this.fgt_id = fgt_id;
 	}
 

@@ -23,7 +23,7 @@ public class User_to_FlightSearch {
 	/**
 	 * Id of the search
 	 */
-	private int utf_id;
+	private String utf_id;
 	
 	/**
 	 * Date of the search
@@ -62,7 +62,7 @@ public class User_to_FlightSearch {
 		this.utf_date            = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE);
 		this.utf_date_departure  = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE_DEPARTURE);
 		this.utf_going_to        = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_GOING_TO);
-		this.utf_id              = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_ID);
+		this.utf_id              = (String)utf.getProperty(USER_TO_FLIGHTSEARCH_ID);
 		this.utf_is_deleted      = (Boolean)utf.getProperty(USER_TO_FLIGHTSEARCH_IS_DELETED);
 		this.utf_leaving_from    = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_LEAVING_FROM);
 		this.utf_responses_count = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_RESPONSES_COUNT);
@@ -74,7 +74,7 @@ public class User_to_FlightSearch {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity user_to_flightSearch = new Entity(USER_TO_FLIGHTSEARCH, this.utf_id);
+		Entity user_to_flightSearch = new Entity(USER_TO_FLIGHTSEARCH, USER_TO_FLIGHTSEARCH_ID);
 		
 		user_to_flightSearch.setProperty(USER_TO_FLIGHTSEARCH_DATE, this.utf_date);
 		user_to_flightSearch.setProperty(USER_TO_FLIGHTSEARCH_DATE_DEPARTURE, this.utf_date_departure);
@@ -90,14 +90,14 @@ public class User_to_FlightSearch {
 	/**
 	 * @return the utf_id
 	 */
-	public int getUtf_id() {
+	public String getUtf_id() {
 		return utf_id;
 	}
 
 	/**
 	 * @param utf_id the utf_id to set
 	 */
-	public void setUtf_id(int utf_id) {
+	public void setUtf_id(String utf_id) {
 		this.utf_id = utf_id;
 	}
 

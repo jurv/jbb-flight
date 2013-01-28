@@ -18,7 +18,7 @@ public class City {
 	/*
 	 * Unique identifier of city
 	 */
-	private int cty_id;
+	private String cty_id;
 	
 	/*
 	 * Name of the city
@@ -36,7 +36,7 @@ public class City {
 	 * @param cty
 	 */
 	public City (Entity cty) {
-		this.cty_id 		= (Integer)cty.getProperty(CITY_ID);
+		this.cty_id 		= (String)cty.getProperty(CITY_ID);
 		this.cty_is_deleted = (Boolean)cty.getProperty(CITY_IS_DELETED);
 		this.cty_label      = (String)cty.getProperty(CITY_LABEL);
 	}
@@ -47,7 +47,7 @@ public class City {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity city = new Entity(CITY, this.cty_id);
+		Entity city = new Entity(CITY, CITY_ID);
 		city.setProperty(CITY_ID, this.cty_id);
 		city.setProperty(CITY_IS_DELETED, this.cty_is_deleted);
 		city.setProperty(CITY_LABEL, this.cty_label);
@@ -58,14 +58,14 @@ public class City {
 	/**
 	 * @return the cty_id
 	 */
-	public int getCty_id() {
+	public String getCty_id() {
 		return cty_id;
 	}
 
 	/**
 	 * @param cty_id the cty_id to set
 	 */
-	public void setCty_id(int cty_id) {
+	public void setCty_id(String cty_id) {
 		this.cty_id = cty_id;
 	}
 
