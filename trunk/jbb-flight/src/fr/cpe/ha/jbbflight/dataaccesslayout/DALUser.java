@@ -27,7 +27,7 @@ public class DALUser {
 	/**
 	 * Singleton
 	 */
-	private DALUser instance = null;
+	private static DALUser instance = null;
 	
 	/**
 	 * Get datastore instance.
@@ -85,8 +85,17 @@ public class DALUser {
 		return new User(pq.asSingleEntity());
 	}
 	
+	/**
+	 * Add the user in the datastore.
+	 * 
+	 * @param usr
+	 * @return
+	 */
 	public boolean AddUser(User usr) {
 		
+		datastore.put(usr.toDatastoreEntity());
+		
+		return true;
 	}
 	
 	public boolean UpdateUser(User usr) {

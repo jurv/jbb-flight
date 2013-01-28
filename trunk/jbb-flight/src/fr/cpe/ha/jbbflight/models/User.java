@@ -91,6 +91,29 @@ public class User {
 		this.usr_login 					= (String)usr.getProperty("usr_login");
 		this.usr_password 				= (String)usr.getProperty("usr_password");
 	}
+	
+	/**
+	 * Return the User model as a User datastore entity model
+	 * @return
+	 */
+	public Entity toDatastoreEntity() {
+		
+		Entity user = new Entity("User", this.usr_id);
+		user.setProperty("usr_id", this.usr_id);
+		user.setProperty("usr_birthdate", this.usr_birthdate);
+		user.setProperty("usr_date_creation", this.usr_date_creation);
+		user.setProperty("usr_date_delete", this.usr_date_delete);
+		user.setProperty("usr_email", this.usr_email);
+		user.setProperty("usr_firstname", this.usr_firstname);
+		user.setProperty("usr_lastname", this.usr_lastname);
+		user.setProperty("usr_is_admin", this.usr_is_admin);
+		user.setProperty("usr_is_deleted", this.usr_is_deleted);
+		user.setProperty("usr_is_password_confirmed", this.usr_is_password_confirmed);
+		user.setProperty("usr_login", this.usr_login);
+		user.setProperty("usr_password", this.usr_password);
+		
+		return user;
+	}
 
 	/**
 	 * @return the usr_id
