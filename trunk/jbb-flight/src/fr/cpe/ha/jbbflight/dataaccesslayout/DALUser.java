@@ -41,7 +41,7 @@ public class DALUser {
 	 * 
 	 * @return singleton instance
 	 */
-	public DALUser getInstance() {
+	public static DALUser getInstance() {
 		if(instance == null)
 			instance = new DALUser();
 		return instance;
