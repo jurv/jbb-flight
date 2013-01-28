@@ -48,7 +48,7 @@ public class UserController extends HttpServlet {
 		if("new".equals(action)){
 			this.newUserAction(req, resp);
 		}else if("edit".equals(action)){
-			this.updateUser(req, resp);
+			this.editUserAction(req, resp);
 		}else if("changepwd".equals(action)){
 			this.changePasswdUserAction(req, resp);
 		}else if("login".equals(action)){
@@ -142,6 +142,17 @@ public class UserController extends HttpServlet {
 	}
 	
 	/**
+	 * Function used to update the user passed in params in the datastore.
+	 * 
+	 * @param req
+	 * @param resp
+	 */
+	private void editUserAction(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
 	 * Display the list users view.
 	 * 
 	 * @param req
@@ -182,14 +193,4 @@ public class UserController extends HttpServlet {
 		
 	}
 	
-	/**
-	 * Function used to update the user passed in params in the datastore.
-	 * 
-	 * @param req
-	 * @param resp
-	 */
-	private void updateUser(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		
-	}
 }
