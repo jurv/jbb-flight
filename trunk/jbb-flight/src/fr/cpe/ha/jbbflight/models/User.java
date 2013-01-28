@@ -2,6 +2,8 @@ package fr.cpe.ha.jbbflight.models;
 
 import java.util.Date;
 
+import com.google.appengine.api.datastore.Entity;
+
 /**
  * Represents an application User.
  * 
@@ -70,6 +72,25 @@ public class User {
 	 */
 	boolean usr_is_password_confirmed;
 	
+	/**
+	 * Construct an User from a datastore entity user
+	 * 
+	 * @param usr
+	 */
+	public User(Entity usr) {
+		this.usr_birthdate 				= (Date)usr.getProperty("usr_bithdate");
+		this.usr_date_creation 			= (Date)usr.getProperty("usr_date_creation");
+		this.usr_date_delete 			= (Date)usr.getProperty("usr_date_delete");
+		this.usr_email 					= (String)usr.getProperty("usr_email");
+		this.usr_firstname 				= (String)usr.getProperty("usr_firstname");
+		this.usr_lastname 				= (String)usr.getProperty("usr_lastname");
+		this.usr_id 					= (Integer)usr.getProperty("usr_id");
+		this.usr_is_admin 				= (Boolean)usr.getProperty("usr_is_admin");
+		this.usr_is_deleted 			= (Boolean)usr.getProperty("usr_is_delete");
+		this.usr_is_password_confirmed 	= (Boolean)usr.getProperty("usr_is_password_confirmed");
+		this.usr_login 					= (String)usr.getProperty("usr_login");
+		this.usr_password 				= (String)usr.getProperty("usr_password");
+	}
 
 	/**
 	 * @return the usr_id
