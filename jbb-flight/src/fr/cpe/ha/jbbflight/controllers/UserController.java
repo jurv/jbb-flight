@@ -4,14 +4,11 @@ import java.io.IOException;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import fr.cpe.ha.jbbflight.dataaccesslayout.DALUser;
 import fr.cpe.ha.jbbflight.models.User;
 
@@ -148,18 +145,18 @@ public class UserController extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date birthdate = null;
 		try {
-			birthdate = sdf.parse(req.getParameter("usr_birthdate"));
+			birthdate = sdf.parse(req.getParameter(User.USER_BIRTHDATE));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
 		User usr = new User();
 		usr.setUsr_birthdate(birthdate);
-		usr.setUsr_email(req.getParameter("usr_email"));
-		usr.setUsr_firstname(req.getParameter("usr_firstname"));
-		usr.setUsr_lastname(req.getParameter("usr_lastname"));
-		usr.setUsr_login(req.getParameter("usr_login"));
-		usr.setUsr_password(req.getParameter("usr_password"));
+		usr.setUsr_email(req.getParameter(User.USER_EMAIL));
+		usr.setUsr_firstname(req.getParameter(User.USER_FIRSTNAME));
+		usr.setUsr_lastname(req.getParameter(User.USER_LASTNAME));
+		usr.setUsr_login(req.getParameter(User.USER_LOGIN));
+		usr.setUsr_password(req.getParameter(User.USER_IS_PASSWORD_CONFIRMED));
 		
 		DALUser dalUser = DALUser.getInstance();
 		dalUser.AddUser(usr);
