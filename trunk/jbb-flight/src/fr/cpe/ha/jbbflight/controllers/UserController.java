@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import utils.Utils;
 import fr.cpe.ha.jbbflight.dataaccesslayout.DALUser;
 import fr.cpe.ha.jbbflight.models.User;
 
@@ -142,16 +144,8 @@ public class UserController extends HttpServlet {
 	 */
 	private void createUser(HttpServletRequest req, HttpServletResponse resp) {
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date birthdate = null;
-		try {
-			birthdate = sdf.parse(req.getParameter(User.USER_BIRTHDATE));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
 		User usr = new User();
-		usr.setUsr_birthdate(birthdate);
+		usr.setUsr_birthdate(Utils.getDateFromString(req.getParameter(User.USER_BIRTHDATE), ""));
 		usr.setUsr_email(req.getParameter(User.USER_EMAIL));
 		usr.setUsr_firstname(req.getParameter(User.USER_FIRSTNAME));
 		usr.setUsr_lastname(req.getParameter(User.USER_LASTNAME));
