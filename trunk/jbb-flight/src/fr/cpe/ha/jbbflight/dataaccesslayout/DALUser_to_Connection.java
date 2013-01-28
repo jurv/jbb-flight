@@ -20,28 +20,28 @@ import fr.cpe.ha.jbbflight.models.User_to_Connection;
  * @author Benjamin Chastanier
  *
  */
-public class DALUser_to_Connection_to_Connection {
+public class DALUser_to_Connection {
 
 	/**
 	 * Singleton
 	 */
-	private static DALUser_to_Connection_to_Connection instance = null;
+	private static DALUser_to_Connection instance = null;
 	
 	/**
 	 * Get datastore instance.
 	 */
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	
-	private DALUser_to_Connection_to_Connection(){}
+	private DALUser_to_Connection(){}
 	
 	/**
 	 * Get the singleton instance.
 	 * 
 	 * @return singleton instance
 	 */
-	public static DALUser_to_Connection_to_Connection getInstance() {
+	public static DALUser_to_Connection getInstance() {
 		if(instance == null)
-			instance = new DALUser_to_Connection_to_Connection();
+			instance = new DALUser_to_Connection();
 		return instance;
 	}
 	
