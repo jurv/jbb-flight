@@ -23,7 +23,7 @@ public class User_to_Connection {
 	/**
 	 * Unique User's login session trace identifier.
 	 */
-	int utc_id;
+	String utc_id;
 	
 	/**
 	 * User's identifier
@@ -47,7 +47,7 @@ public class User_to_Connection {
 	public User_to_Connection(Entity utc) {
 		this.usr_id 		= (Integer)utc.getProperty(User.USER_ID);
 		this.utc_date 		= (Date)utc.getProperty(USER_TO_CONNECTION_DATE);
-		this.utc_id     	= (Integer)utc.getProperty(USER_TO_CONNECTION_ID);
+		this.utc_id     	= (String)utc.getProperty(USER_TO_CONNECTION_ID);
 		this.utc_is_deleted = (Boolean)utc.getProperty(USER_TO_CONNECTION_IS_DELETED);
 	}
 	
@@ -56,7 +56,7 @@ public class User_to_Connection {
 	 * @return
 	 */
 	public Entity toDatastoreEntity() {
-		Entity utc = new Entity(USER_TO_CONNECTION, this.utc_id);
+		Entity utc = new Entity(USER_TO_CONNECTION, USER_TO_CONNECTION_ID);
 		utc.setProperty(USER_TO_CONNECTION_ID, this.utc_id);
 		utc.setProperty(User.USER_ID, this.usr_id);
 		utc.setProperty(USER_TO_CONNECTION_DATE, this.utc_date);
@@ -68,14 +68,14 @@ public class User_to_Connection {
 	/**
 	 * @return the utc_id
 	 */
-	public int getUtc_id() {
+	public String getUtc_id() {
 		return utc_id;
 	}
 
 	/**
 	 * @param utc_id the utc_id to set
 	 */
-	public void setUtc_id(int utc_id) {
+	public void setUtc_id(String utc_id) {
 		this.utc_id = utc_id;
 	}
 
