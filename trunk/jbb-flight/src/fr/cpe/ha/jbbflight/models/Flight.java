@@ -1,9 +1,7 @@
 package fr.cpe.ha.jbbflight.models;
 
 import java.util.Date;
-
 import com.google.appengine.api.datastore.Entity;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 
 /**
@@ -59,7 +57,7 @@ public class Flight {
 
 	
 	/**
-	 * 
+	 * Construct a Flight object from a datastore entity flight
 	 */
 	public Flight(Entity fgt) {
 		this.fgt_id              = (Integer)fgt.getProperty("fgt_id");
@@ -71,6 +69,27 @@ public class Flight {
 		this.fgt_reserved_seats  = (Integer)fgt.getProperty("fgt_reserved_seats");
 		this.fgt_total_seats     = (Integer)fgt.getProperty("fgt_total_seats");
 		this.fgt_is_deleted      = (Boolean)fgt.getProperty("fgt_is_deleted");
+	}
+	
+	/**
+	 * Return the Flight model as a Flight datastore entity model
+	 * @return
+	 */
+	public Entity toDatastoreEntity() {
+		
+		Entity flight = new Entity("Flight", this.fgt_id);
+		
+		flight.setProperty("fgt_id", this.fgt_id);
+		flight.setProperty("fgt_date_arrival", this.fgt_date_arrival);
+		flight.setProperty("fgt_date_departure", this.fgt_date_departure);
+		flight.setProperty("fgt_leaving_from_id", this.fgt_leaving_from_id);
+		flight.setProperty("fgt_going_to_id", this.fgt_going_to_id);
+		flight.setProperty("fgt_price", this.fgt_price);
+		flight.setProperty("fgt_total_seats", this.fgt_total_seats);
+		flight.setProperty("fgt_reserved_seats", this.fgt_reserved_seats);
+		flight.setProperty("fgt_is_deleted", this.fgt_is_deleted);
+		
+		return flight;
 	}
 	
 	/**

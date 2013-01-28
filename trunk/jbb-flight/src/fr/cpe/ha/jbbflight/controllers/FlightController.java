@@ -2,7 +2,7 @@ package fr.cpe.ha.jbbflight.controllers;
 
 import java.util.List;
 
-import fr.cpe.ha.jbbflight.dataaccesslayout.DALUser;
+import fr.cpe.ha.jbbflight.dataaccesslayout.DALFlight;
 import fr.cpe.ha.jbbflight.models.Flight;
 
 /**

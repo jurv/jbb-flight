@@ -1,7 +1,6 @@
 package fr.cpe.ha.jbbflight.dataaccesslayout;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -9,7 +8,6 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -19,7 +17,7 @@ import fr.cpe.ha.jbbflight.models.Flight;
 /**
  * Handle data access for the Flight Object Model.
  * 
- * @author Julien Rouvier
+ * @author Benjamin Chastanier
  *
  */
 public class DALFlight {
@@ -54,7 +52,7 @@ public class DALFlight {
 	public List<Flight> GetAllFlights() {
 		
 		Query q = new Query("Flight")
-			.setFilter(new FilterPredicate("usr_is_deleted", FilterOperator.NOT_EQUAL, false));
+			.setFilter(new FilterPredicate("fgt_is_deleted", FilterOperator.NOT_EQUAL, false));
 		
 		PreparedQuery pq = datastore.prepare(q);
 		
@@ -85,15 +83,38 @@ public class DALFlight {
 		return new Flight(pq.asSingleEntity());
 	}
 	
-	public boolean AddFlight(Flight usr) {
-		return false;
+	/**
+	 * Add the flight in the datastore.
+	 * 
+	 * @param fgt
+	 * @return
+	 */
+	public boolean AddFlight(Flight fgt) {
+		datastore.put(fgt.toDatastoreEntity());
+		return true;
 	}
 	
-	public boolean UpdateFlight(Flight usr) {
-		return false;
+	/**
+	 * Update the flight values in the datastore.
+	 * 
+	 * @param fgt
+	 * @return
+	 */
+	public boolean UpdateFlight(Flight fgt) {
+		return AddFlight(fgt);
 	}
 	
-	public boolean RemoveFlight(Flight usr) {
-		return false;
+	/**
+	 * Logical remove the flight in the datastore. 
+	 * 
+	 * @param fgt
+	 * @return
+	 */
+	public boolean RemoveFlight(Flight fgt) {
+		
+		fgt.setFgt_is_deleted(true);
+		UpdateFlight(fgt);
+		
+		return true;
 	}
 }
