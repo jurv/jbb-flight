@@ -1,4 +1,4 @@
-<!-- View page 5 -->
+
 <h1> Login </h1>
 <form id="login-form" method="POST">
 	<label for="usr_login">Login</label>

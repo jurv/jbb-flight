@@ -25,15 +25,15 @@ public class UserController extends HttpServlet {
 		String action = req.getParameter("action");
 		
 		if("new".equals(action)){
-			this.newUser(req, resp);
+			this.newUserView(req, resp);
 		}else if("view".equals(action)){
-			this.viewUser(req, resp);
+			this.viewUserView(req, resp);
 		}else if("edit".equals(action)){
-			this.editUser(req, resp);
+			this.editUserView(req, resp);
 		}else if("list".equals(action)){
-			this.listUser(req, resp);
+			this.listUserView(req, resp);
 		}else if("login".equals(action)){
-			this.loginUser(req, resp);
+			this.loginUserView(req, resp);
 		}else if("changepwd".equals(action)){
 			this.changePasswdUserView(req, resp);
 		}
@@ -46,21 +46,28 @@ public class UserController extends HttpServlet {
 		String action = req.getParameter("action");
 		
 		if("new".equals(action)){
-			this.createUser(req, resp);
+			this.newUserAction(req, resp);
 		}else if("edit".equals(action)){
 			this.updateUser(req, resp);
 		}else if("changepwd".equals(action)){
 			this.changePasswdUserAction(req, resp);
+		}else if("login".equals(action)){
+			this.loginUserAction(req, resp);
 		}
 	}
 
-	private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+	private void loginUserView(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userlogin.jsp");			
 		try {
 			dispatcher.forward(req,resp);
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	private void loginUserAction(HttpServletRequest req, HttpServletResponse resp) {
+		
+		
 	}
 
 	/**
@@ -69,7 +76,7 @@ public class UserController extends HttpServlet {
 	 * @param resp
 	 * @throws IOException
 	 */
-	public void newUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+	public void newUserView(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/usernew.jsp");			
 		try {
 			dispatcher.forward(req,resp);
@@ -79,13 +86,37 @@ public class UserController extends HttpServlet {
 	}
 	
 	/**
+	 * Function used to add the user passed in params in the datastore.
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException 
+	 */
+	private void newUserAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		User usr = new User();
+		usr.setUsr_birthdate(Utils.getDateFromString(req.getParameter(User.USER_BIRTHDATE), ""));
+		usr.setUsr_email(req.getParameter(User.USER_EMAIL));
+		usr.setUsr_firstname(req.getParameter(User.USER_FIRSTNAME));
+		usr.setUsr_lastname(req.getParameter(User.USER_LASTNAME));
+		usr.setUsr_login(req.getParameter(User.USER_LOGIN));
+		usr.setUsr_password(req.getParameter(User.USER_IS_PASSWORD_CONFIRMED));
+		
+		DALUser dalUser = DALUser.getInstance();
+		dalUser.AddUser(usr);
+		
+		// Redirect to the list view
+		this.listUserView(req, resp);
+	}
+	
+	/**
 	 * Display the details user view.
 	 * 
 	 * @param req
 	 * @param resp
 	 * @throws IOException
 	 */
-	public void viewUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+	public void viewUserView(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userview.jsp");			
 		try {
 			dispatcher.forward(req,resp);
@@ -101,7 +132,7 @@ public class UserController extends HttpServlet {
 	 * @param resp
 	 * @throws IOException
 	 */
-	public void editUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+	public void editUserView(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/useredit.jsp");			
 		try {
 			dispatcher.forward(req,resp);
@@ -117,7 +148,7 @@ public class UserController extends HttpServlet {
 	 * @param resp
 	 * @throws IOException
 	 */
-	public void listUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+	public void listUserView(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userlist.jsp");			
 		try {
 			dispatcher.forward(req,resp);
@@ -160,29 +191,5 @@ public class UserController extends HttpServlet {
 	private void updateUser(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	/**
-	 * Function used to add the user passed in params in the datastore.
-	 * 
-	 * @param req
-	 * @param resp
-	 * @throws IOException 
-	 */
-	private void createUser(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
-		User usr = new User();
-		usr.setUsr_birthdate(Utils.getDateFromString(req.getParameter(User.USER_BIRTHDATE), ""));
-		usr.setUsr_email(req.getParameter(User.USER_EMAIL));
-		usr.setUsr_firstname(req.getParameter(User.USER_FIRSTNAME));
-		usr.setUsr_lastname(req.getParameter(User.USER_LASTNAME));
-		usr.setUsr_login(req.getParameter(User.USER_LOGIN));
-		usr.setUsr_password(req.getParameter(User.USER_IS_PASSWORD_CONFIRMED));
-		
-		DALUser dalUser = DALUser.getInstance();
-		dalUser.AddUser(usr);
-		
-		// Redirect to the list view
-		this.listUser(req, resp);
 	}
 }
