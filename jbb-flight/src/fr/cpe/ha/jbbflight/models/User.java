@@ -12,10 +12,24 @@ import com.google.appengine.api.datastore.Entity;
  */
 public class User {
 
+	public final static String USER = "User";
+	public final static String USER_ID = "usr_id";
+	public final static String USER_FIRSTNAME = "usr_firstname";
+	public final static String USER_LASTNAME = "usr_lastname";
+	public final static String USER_BIRTHDATE = "usr_bithdate";
+	public final static String USER_EMAIL = "usr_email";
+	public final static String USER_LOGIN = "usr_login";
+	public final static String USER_PASSWORD = "usr_password";
+	public final static String USER_IS_DELETED = "usr_is_deleted";
+	public final static String USER_IS_ADMIN = "usr_is_admin";
+	public final static String USER_DATE_CREATION = "usr_date_creation";
+	public final static String USER_DATE_DELETE = "usr_date_delete";
+	public final static String USER_IS_PASSWORD_CONFIRMED = "usr_is_password_confirmed";
+	
 	/**
 	 * Unique identifier for User
 	 */
-	int usr_id;
+	private int usr_id;
 
 	/**
 	 * First name of the User
@@ -78,18 +92,18 @@ public class User {
 	 * @param usr
 	 */
 	public User(Entity usr) {
-		this.usr_birthdate 				= (Date)usr.getProperty("usr_bithdate");
-		this.usr_date_creation 			= (Date)usr.getProperty("usr_date_creation");
-		this.usr_date_delete 			= (Date)usr.getProperty("usr_date_delete");
-		this.usr_email 					= (String)usr.getProperty("usr_email");
-		this.usr_firstname 				= (String)usr.getProperty("usr_firstname");
-		this.usr_lastname 				= (String)usr.getProperty("usr_lastname");
-		this.usr_id 					= (Integer)usr.getProperty("usr_id");
-		this.usr_is_admin 				= (Boolean)usr.getProperty("usr_is_admin");
-		this.usr_is_deleted 			= (Boolean)usr.getProperty("usr_is_delete");
-		this.usr_is_password_confirmed 	= (Boolean)usr.getProperty("usr_is_password_confirmed");
-		this.usr_login 					= (String)usr.getProperty("usr_login");
-		this.usr_password 				= (String)usr.getProperty("usr_password");
+		this.usr_birthdate 				= (Date)usr.getProperty(this.USER_BIRTHDATE);
+		this.usr_date_creation 			= (Date)usr.getProperty(this.USER_DATE_CREATION);
+		this.usr_date_delete 			= (Date)usr.getProperty(this.USER_DATE_DELETE);
+		this.usr_email 					= (String)usr.getProperty(this.USER_EMAIL);
+		this.usr_firstname 				= (String)usr.getProperty(this.USER_FIRSTNAME);
+		this.usr_lastname 				= (String)usr.getProperty(this.USER_LASTNAME);
+		this.usr_id 					= (Integer)usr.getProperty(this.USER_ID);
+		this.usr_is_admin 				= (Boolean)usr.getProperty(this.USER_IS_ADMIN);
+		this.usr_is_deleted 			= (Boolean)usr.getProperty(this.USER_IS_DELETED);
+		this.usr_is_password_confirmed 	= (Boolean)usr.getProperty(this.USER_IS_PASSWORD_CONFIRMED);
+		this.usr_login 					= (String)usr.getProperty(this.USER_LOGIN);
+		this.usr_password 				= (String)usr.getProperty(this.USER_PASSWORD);
 	}
 	
 	/**
@@ -98,19 +112,19 @@ public class User {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity user = new Entity("User", this.usr_id);
-		user.setProperty("usr_id", this.usr_id);
-		user.setProperty("usr_birthdate", this.usr_birthdate);
-		user.setProperty("usr_date_creation", this.usr_date_creation);
-		user.setProperty("usr_date_delete", this.usr_date_delete);
-		user.setProperty("usr_email", this.usr_email);
-		user.setProperty("usr_firstname", this.usr_firstname);
-		user.setProperty("usr_lastname", this.usr_lastname);
-		user.setProperty("usr_is_admin", this.usr_is_admin);
-		user.setProperty("usr_is_deleted", this.usr_is_deleted);
-		user.setProperty("usr_is_password_confirmed", this.usr_is_password_confirmed);
-		user.setProperty("usr_login", this.usr_login);
-		user.setProperty("usr_password", this.usr_password);
+		Entity user = new Entity(this.USER, this.usr_id);
+		user.setProperty(this.USER_ID, this.usr_id);
+		user.setProperty(this.USER_BIRTHDATE, this.usr_birthdate);
+		user.setProperty(this.USER_DATE_CREATION, this.usr_date_creation);
+		user.setProperty(this.USER_DATE_DELETE, this.usr_date_delete);
+		user.setProperty(this.USER_EMAIL, this.usr_email);
+		user.setProperty(this.USER_FIRSTNAME, this.usr_firstname);
+		user.setProperty(this.USER_LASTNAME, this.usr_lastname);
+		user.setProperty(this.USER_IS_ADMIN, this.usr_is_admin);
+		user.setProperty(this.USER_IS_DELETED, this.usr_is_deleted);
+		user.setProperty(this.USER_IS_PASSWORD_CONFIRMED, this.usr_is_password_confirmed);
+		user.setProperty(this.USER_LOGIN, this.usr_login);
+		user.setProperty(this.USER_PASSWORD, this.usr_password);
 		
 		return user;
 	}
