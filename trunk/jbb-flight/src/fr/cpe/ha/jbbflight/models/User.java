@@ -29,7 +29,7 @@ public class User {
 	/**
 	 * Unique identifier for User
 	 */
-	private int usr_id;
+	private String usr_id;
 
 	/**
 	 * First name of the User
@@ -64,12 +64,12 @@ public class User {
 	/**
 	 * True if the User is deleted
 	 */
-	boolean usr_is_deleted;
+	boolean usr_is_deleted = false;
 	
 	/**
 	 * True if the user is an admin
 	 */
-	boolean usr_is_admin;
+	boolean usr_is_admin = false;
 	
 	/**
 	 * User's creation date
@@ -84,7 +84,9 @@ public class User {
 	/**
 	 * True if the User set his own password string
 	 */
-	boolean usr_is_password_confirmed;
+	boolean usr_is_password_confirmed = false;
+	
+	public User() {}
 	
 	/**
 	 * Construct an User from a datastore entity user
@@ -98,7 +100,7 @@ public class User {
 		this.usr_email 					= (String)usr.getProperty(USER_EMAIL);
 		this.usr_firstname 				= (String)usr.getProperty(USER_FIRSTNAME);
 		this.usr_lastname 				= (String)usr.getProperty(USER_LASTNAME);
-		this.usr_id 					= (Integer)usr.getProperty(USER_ID);
+		this.usr_id 					= (String)usr.getProperty(USER_ID);
 		this.usr_is_admin 				= (Boolean)usr.getProperty(USER_IS_ADMIN);
 		this.usr_is_deleted 			= (Boolean)usr.getProperty(USER_IS_DELETED);
 		this.usr_is_password_confirmed 	= (Boolean)usr.getProperty(USER_IS_PASSWORD_CONFIRMED);
@@ -112,8 +114,7 @@ public class User {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity user = new Entity(USER, this.usr_id);
-		user.setProperty(USER_ID, this.usr_id);
+		Entity user = new Entity(USER, USER_ID);
 		user.setProperty(USER_BIRTHDATE, this.usr_birthdate);
 		user.setProperty(USER_DATE_CREATION, this.usr_date_creation);
 		user.setProperty(USER_DATE_DELETE, this.usr_date_delete);
@@ -132,14 +133,14 @@ public class User {
 	/**
 	 * @return the usr_id
 	 */
-	public int getUsr_id() {
+	public String getUsr_id() {
 		return usr_id;
 	}
 
 	/**
 	 * @param usr_id the usr_id to set
 	 */
-	public void setUsr_id(int usr_id) {
+	public void setUsr_id(String usr_id) {
 		this.usr_id = usr_id;
 	}
 

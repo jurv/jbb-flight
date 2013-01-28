@@ -1,6 +1,7 @@
 package fr.cpe.ha.jbbflight.dataaccesslayout;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -112,6 +113,7 @@ public class DALUser {
 	 */
 	public boolean AddUser(User usr) {
 		
+		usr.setUsr_date_creation(new Date());
 		datastore.put(usr.toDatastoreEntity());
 		
 		return true;
@@ -137,6 +139,7 @@ public class DALUser {
 	public boolean RemoveUser(User usr) {
 		
 		usr.setUsr_is_deleted(true);
+		usr.setUsr_date_delete(new Date());
 		UpdateUser(usr);
 		
 		return true;
