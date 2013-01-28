@@ -1,5 +1,7 @@
 package fr.cpe.ha.jbbflight.models;
 
+import com.google.appengine.api.datastore.Entity;
+
 /**
  * 
  * @author baptiste.gaujal
@@ -22,6 +24,30 @@ public class City {
 	 */
 	boolean cty_is_deleted;
 	
+	/**
+	 * Construct a City from a datastore entity city
+	 * 
+	 * @param cty
+	 */
+	public City (Entity cty) {
+		this.cty_id 		= (Integer)cty.getProperty("cty_id");
+		this.cty_is_deleted = (Boolean)cty.getProperty("cty_is_deleted");
+		this.cty_label      = (String)cty.getProperty("cty_label");
+	}
+	
+	/**
+	 * Return the City model as a City datastore entity model
+	 * @return
+	 */
+	public Entity toDatastoreEntity() {
+		
+		Entity city = new Entity("City", this.cty_id);
+		city.setProperty("cty_id", this.cty_id);
+		city.setProperty("cty_is_delete", this.cty_is_deleted);
+		city.setProperty("cty_label", this.cty_label);
+		
+		return city;
+	}
 
 	/**
 	 * @return the cty_id
