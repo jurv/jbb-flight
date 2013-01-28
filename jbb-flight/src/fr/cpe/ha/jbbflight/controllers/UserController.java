@@ -22,32 +22,53 @@ public class UserController extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html");
 		
-		/*RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login.jsp");			
+		String action = req.getParameter("action");
+		
+		if("new".equals(action)){
+			this.newUser(req, resp);
+		}else if("view".equals(action)){
+			this.viewUser(req, resp);
+		}else if("edit".equals(action)){
+			this.editUser(req, resp);
+		}else if("list".equals(action)){
+			this.listUser(req, resp);
+		}
+	}
+	
+	
+	public void newUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/newuser.jsp");			
 		try {
 			dispatcher.forward(req,resp);
 		} catch (ServletException e) {
 			e.printStackTrace();
-		}*/
-		
-		resp.getWriter().print("Bienvenue sur la servlet user !");
+		}
 	}
 	
-	/**
-	 * Return all users
-	 * @return List<User> All users registered in the datastore
-	 */
-	public List<User> getUsers(){
-		DALUser dalUser = DALUser.getInstance();
-		return dalUser.GetAllUsers();
+	public void viewUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/viewuser.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	/**
-	 * Return a user
-	 * @param idUser The id of the user
-	 * @return User The user
-	 */
-	public User getUser(int idUser){
-		DALUser dalUser = DALUser.getInstance();
-		return dalUser.GetUserById(idUser);
+	public void editUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/edituser.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void listUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/listuser.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
 	}
 }
