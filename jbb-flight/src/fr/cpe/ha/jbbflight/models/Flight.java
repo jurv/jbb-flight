@@ -11,6 +11,20 @@ import com.google.appengine.api.datastore.Entity;
 public class Flight {
 
 	/**
+	 * Definitions of model's attributes
+	 */
+	public final static String FLIGHT                 = "Flight";
+	public final static String FLIGHT_ID              = "fgt_id" ;
+	public final static String FLIGHT_LEAVING_FROM_ID = "fgt_leaving_from_id" ;
+	public final static String FLIGHT_GOING_TO_ID     = "fgt_going_to_id" ;
+	public final static String FLIGHT_DATE_DEPARTURE  = "fgt_date_departure" ;
+	public final static String FLIGHT_DATE_ARRIVAL    = "fgt_date_arrival" ;
+	public final static String FLIGHT_PRICE           = "fgt_price" ;
+	public final static String FLIGHT_TOTAL_SEATS     = "fgt_total_seats" ;
+	public final static String FLIGHT_RESERVED_SEATS  = "fgt_reserved_seats" ;
+	public final static String FLIGHT_IS_DELETED      = "fgt_is_deleted" ;
+	
+	/**
 	 * Id of the flight
 	 */
 	private int fgt_id;
@@ -60,15 +74,15 @@ public class Flight {
 	 * Construct a Flight object from a datastore entity flight
 	 */
 	public Flight(Entity fgt) {
-		this.fgt_id              = (Integer)fgt.getProperty("fgt_id");
-		this.fgt_date_arrival    = (Date)fgt.getProperty("fgt_date_arrival");
-		this.fgt_date_departure  = (Date)fgt.getProperty("fgt_date_departure");
-		this.fgt_going_to_id     = (Integer)fgt.getProperty("fgt_going_to_id");
-		this.fgt_leaving_from_id = (Integer)fgt.getProperty("fgt_leaving_from_id");
-		this.fgt_price           = (Float)fgt.getProperty("fgt_price");
-		this.fgt_reserved_seats  = (Integer)fgt.getProperty("fgt_reserved_seats");
-		this.fgt_total_seats     = (Integer)fgt.getProperty("fgt_total_seats");
-		this.fgt_is_deleted      = (Boolean)fgt.getProperty("fgt_is_deleted");
+		this.fgt_id              = (Integer)fgt.getProperty(FLIGHT_ID);
+		this.fgt_date_arrival    = (Date)fgt.getProperty(FLIGHT_DATE_ARRIVAL);
+		this.fgt_date_departure  = (Date)fgt.getProperty(FLIGHT_DATE_DEPARTURE);
+		this.fgt_going_to_id     = (Integer)fgt.getProperty(FLIGHT_GOING_TO_ID);
+		this.fgt_leaving_from_id = (Integer)fgt.getProperty(FLIGHT_LEAVING_FROM_ID);
+		this.fgt_price           = (Float)fgt.getProperty(FLIGHT_PRICE);
+		this.fgt_reserved_seats  = (Integer)fgt.getProperty(FLIGHT_RESERVED_SEATS);
+		this.fgt_total_seats     = (Integer)fgt.getProperty(FLIGHT_TOTAL_SEATS);
+		this.fgt_is_deleted      = (Boolean)fgt.getProperty(FLIGHT_IS_DELETED);
 	}
 	
 	/**
@@ -77,17 +91,17 @@ public class Flight {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity flight = new Entity("Flight", this.fgt_id);
+		Entity flight = new Entity(FLIGHT, this.fgt_id);
 		
-		flight.setProperty("fgt_id", this.fgt_id);
-		flight.setProperty("fgt_date_arrival", this.fgt_date_arrival);
-		flight.setProperty("fgt_date_departure", this.fgt_date_departure);
-		flight.setProperty("fgt_leaving_from_id", this.fgt_leaving_from_id);
-		flight.setProperty("fgt_going_to_id", this.fgt_going_to_id);
-		flight.setProperty("fgt_price", this.fgt_price);
-		flight.setProperty("fgt_total_seats", this.fgt_total_seats);
-		flight.setProperty("fgt_reserved_seats", this.fgt_reserved_seats);
-		flight.setProperty("fgt_is_deleted", this.fgt_is_deleted);
+		flight.setProperty(FLIGHT_ID, this.fgt_id);
+		flight.setProperty(FLIGHT_DATE_ARRIVAL, this.fgt_date_arrival);
+		flight.setProperty(FLIGHT_DATE_DEPARTURE, this.fgt_date_departure);
+		flight.setProperty(FLIGHT_LEAVING_FROM_ID, this.fgt_leaving_from_id);
+		flight.setProperty(FLIGHT_GOING_TO_ID, this.fgt_going_to_id);
+		flight.setProperty(FLIGHT_PRICE, this.fgt_price);
+		flight.setProperty(FLIGHT_TOTAL_SEATS, this.fgt_total_seats);
+		flight.setProperty(FLIGHT_RESERVED_SEATS, this.fgt_reserved_seats);
+		flight.setProperty(FLIGHT_IS_DELETED, this.fgt_is_deleted);
 		
 		return flight;
 	}
