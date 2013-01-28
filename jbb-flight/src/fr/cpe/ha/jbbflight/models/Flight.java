@@ -2,6 +2,9 @@ package fr.cpe.ha.jbbflight.models;
 
 import java.util.Date;
 
+import com.google.appengine.api.datastore.Entity;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 
 /**
  * 
@@ -54,6 +57,22 @@ public class Flight {
 	 */
 	private boolean fgt_is_deleted;
 
+	
+	/**
+	 * 
+	 */
+	public Flight(Entity fgt) {
+		this.fgt_id              = (Integer)fgt.getProperty("fgt_id");
+		this.fgt_date_arrival    = (Date)fgt.getProperty("fgt_date_arrival");
+		this.fgt_date_departure  = (Date)fgt.getProperty("fgt_date_departure");
+		this.fgt_going_to_id     = (Integer)fgt.getProperty("fgt_going_to_id");
+		this.fgt_leaving_from_id = (Integer)fgt.getProperty("fgt_leaving_from_id");
+		this.fgt_price           = (Float)fgt.getProperty("fgt_price");
+		this.fgt_reserved_seats  = (Integer)fgt.getProperty("fgt_reserved_seats");
+		this.fgt_total_seats     = (Integer)fgt.getProperty("fgt_total_seats");
+		this.fgt_is_deleted      = (Boolean)fgt.getProperty("fgt_is_deleted");
+	}
+	
 	/**
 	 * @return the fgt_id
 	 */
@@ -178,7 +197,5 @@ public class Flight {
 	 */
 	public void setFgt_is_deleted(boolean fgt_is_deleted) {
 		this.fgt_is_deleted = fgt_is_deleted;
-	}
-	
-	
+	}	
 }

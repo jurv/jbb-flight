@@ -1,0 +1,99 @@
+package fr.cpe.ha.jbbflight.dataaccesslayout;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.PreparedQuery;
+
+import fr.cpe.ha.jbbflight.models.Flight;
+
+/**
+ * Handle data access for the Flight Object Model.
+ * 
+ * @author Julien Rouvier
+ *
+ */
+public class DALFlight {
+
+	/**
+	 * Singleton
+	 */
+	private static DALFlight instance = null;
+	
+	/**
+	 * Get datastore instance.
+	 */
+	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	
+	private DALFlight(){}
+	
+	/**
+	 * Get the singleton instance.
+	 * 
+	 * @return singleton instance
+	 */
+	public static DALFlight getInstance() {
+		if(instance == null)
+			instance = new DALFlight();
+		return instance;
+	}
+	
+	/**
+	 * Get all undeleted Flights from the datastore.
+	 * @return
+	 */
+	public List<Flight> GetAllFlights() {
+		
+		Query q = new Query("Flight")
+			.setFilter(new FilterPredicate("usr_is_deleted", FilterOperator.NOT_EQUAL, false));
+		
+		PreparedQuery pq = datastore.prepare(q);
+		
+		ArrayList<Flight> retFlights = new ArrayList<Flight>();
+		for(Entity flight : pq.asList(FetchOptions.Builder.withDefaults())){
+			retFlights.add(new Flight(flight));
+		}
+		
+		return retFlights;
+	}
+	
+	/**
+	 * Get the Flight corresponding with the identifier.
+	 * 
+	 * @param id Flight's Unique identifier
+	 * @return
+	 */
+	public Flight GetFlightById(int id) {
+		
+		Query q =  new Query("Flight")
+        	.setFilter(new FilterPredicate(
+        					Entity.KEY_RESERVED_PROPERTY,
+        					Query.FilterOperator.EQUAL, 
+        					id)
+                       );
+		PreparedQuery pq = datastore.prepare(q);
+
+		return new Flight(pq.asSingleEntity());
+	}
+	
+	public boolean AddFlight(Flight usr) {
+		return false;
+	}
+	
+	public boolean UpdateFlight(Flight usr) {
+		return false;
+	}
+	
+	public boolean RemoveFlight(Flight usr) {
+		return false;
+	}
+}
