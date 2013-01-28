@@ -1,9 +1,6 @@
 package fr.cpe.ha.jbbflight.controllers;
 
 import java.io.IOException;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -141,8 +138,9 @@ public class UserController extends HttpServlet {
 	 * 
 	 * @param req
 	 * @param resp
+	 * @throws IOException 
 	 */
-	private void createUser(HttpServletRequest req, HttpServletResponse resp) {
+	private void createUser(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		User usr = new User();
 		usr.setUsr_birthdate(Utils.getDateFromString(req.getParameter(User.USER_BIRTHDATE), ""));
@@ -154,5 +152,8 @@ public class UserController extends HttpServlet {
 		
 		DALUser dalUser = DALUser.getInstance();
 		dalUser.AddUser(usr);
+		
+		// Redirect to the list view
+		this.listUser(req, resp);
 	}
 }
