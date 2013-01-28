@@ -1,6 +1,9 @@
 package fr.cpe.ha.jbbflight.controllers;
 
 import java.io.IOException;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -60,6 +63,12 @@ public class UserController extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Diplay the new User Form view.
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
 	public void newUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/usernew.jsp");			
 		try {
@@ -69,6 +78,13 @@ public class UserController extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * Display the details user view.
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
 	public void viewUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userview.jsp");			
 		try {
@@ -78,6 +94,13 @@ public class UserController extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * Display the user edit form view.
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
 	public void editUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/useredit.jsp");			
 		try {
@@ -87,6 +110,13 @@ public class UserController extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * Display the list users view.
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
 	public void listUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userlist.jsp");			
 		try {
@@ -94,5 +124,44 @@ public class UserController extends HttpServlet {
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Function used to update the user passed in params in the datastore.
+	 * 
+	 * @param req
+	 * @param resp
+	 */
+	private void updateUser(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Function used to add the user passed in params in the datastore.
+	 * 
+	 * @param req
+	 * @param resp
+	 */
+	private void createUser(HttpServletRequest req, HttpServletResponse resp) {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date birthdate = null;
+		try {
+			birthdate = sdf.parse(req.getParameter("usr_birthdate"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		User usr = new User();
+		usr.setUsr_birthdate(birthdate);
+		usr.setUsr_email(req.getParameter("usr_email"));
+		usr.setUsr_firstname(req.getParameter("usr_firstname"));
+		usr.setUsr_lastname(req.getParameter("usr_lastname"));
+		usr.setUsr_login(req.getParameter("usr_login"));
+		usr.setUsr_password(req.getParameter("usr_password"));
+		
+		DALUser dalUser = DALUser.getInstance();
+		dalUser.AddUser(usr);
 	}
 }
