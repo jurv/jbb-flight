@@ -59,13 +59,13 @@ public class User_to_FlightSearch {
 	 * Construct a User_to_FlightSearch object from a datastore entity User_to_FlightSearch
 	 */
 	public User_to_FlightSearch(Entity utf) {
-		this.utf_date            = (Date)utf.getProperty(this.USER_TO_FLIGHTSEARCH_DATE);
-		this.utf_date_departure  = (Date)utf.getProperty(this.USER_TO_FLIGHTSEARCH_DATE_DEPARTURE);
-		this.utf_going_to        = (Integer)utf.getProperty(this.USER_TO_FLIGHTSEARCH_GOING_TO);
-		this.utf_id              = (Integer)utf.getProperty(this.USER_TO_FLIGHTSEARCH_ID);
-		this.utf_is_deleted      = (Boolean)utf.getProperty(this.USER_TO_FLIGHTSEARCH_IS_DELETED);
-		this.utf_leaving_from    = (Integer)utf.getProperty(this.USER_TO_FLIGHTSEARCH_LEAVING_FROM);
-		this.utf_responses_count = (Integer)utf.getProperty(this.USER_TO_FLIGHTSEARCH_RESPONSES_COUNT);
+		this.utf_date            = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE);
+		this.utf_date_departure  = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE_DEPARTURE);
+		this.utf_going_to        = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_GOING_TO);
+		this.utf_id              = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_ID);
+		this.utf_is_deleted      = (Boolean)utf.getProperty(USER_TO_FLIGHTSEARCH_IS_DELETED);
+		this.utf_leaving_from    = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_LEAVING_FROM);
+		this.utf_responses_count = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_RESPONSES_COUNT);
 	}
 	
 	/**
@@ -74,15 +74,15 @@ public class User_to_FlightSearch {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity user_to_flightSearch = new Entity(this.USER_TO_FLIGHTSEARCH, this.utf_id);
+		Entity user_to_flightSearch = new Entity(USER_TO_FLIGHTSEARCH, this.utf_id);
 		
-		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_DATE, this.utf_date);
-		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_DATE_DEPARTURE, this.utf_date_departure);
-		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_GOING_TO, this.utf_going_to);
-		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_ID, this.utf_id);
-		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_IS_DELETED, this.utf_is_deleted);
-		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_LEAVING_FROM, this.utf_leaving_from);
-		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_RESPONSES_COUNT, this.utf_responses_count);
+		user_to_flightSearch.setProperty(USER_TO_FLIGHTSEARCH_DATE, this.utf_date);
+		user_to_flightSearch.setProperty(USER_TO_FLIGHTSEARCH_DATE_DEPARTURE, this.utf_date_departure);
+		user_to_flightSearch.setProperty(USER_TO_FLIGHTSEARCH_GOING_TO, this.utf_going_to);
+		user_to_flightSearch.setProperty(USER_TO_FLIGHTSEARCH_ID, this.utf_id);
+		user_to_flightSearch.setProperty(USER_TO_FLIGHTSEARCH_IS_DELETED, this.utf_is_deleted);
+		user_to_flightSearch.setProperty(USER_TO_FLIGHTSEARCH_LEAVING_FROM, this.utf_leaving_from);
+		user_to_flightSearch.setProperty(USER_TO_FLIGHTSEARCH_RESPONSES_COUNT, this.utf_responses_count);
 		
 		return user_to_flightSearch;
 	}
