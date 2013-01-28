@@ -34,16 +34,9 @@ public class UserController extends HttpServlet {
 			this.listUser(req, resp);
 		}else if("login".equals(action)){
 			this.loginUser(req, resp);
+		}else if("changepwd".equals(action)){
+			this.changePasswdUserView(req, resp);
 		}
-	}
-	
-	private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userlogin.jsp");			
-		try {
-			dispatcher.forward(req,resp);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		}		
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -56,7 +49,18 @@ public class UserController extends HttpServlet {
 			this.createUser(req, resp);
 		}else if("edit".equals(action)){
 			this.updateUser(req, resp);
+		}else if("changepwd".equals(action)){
+			this.changePasswdUserAction(req, resp);
 		}
+	}
+
+	private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userlogin.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}		
 	}
 
 	/**
@@ -120,6 +124,31 @@ public class UserController extends HttpServlet {
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Function used to show the change password form.
+	 * 
+	 * @param req
+	 * @param resp
+	 */
+	public void changePasswdUserView(HttpServletRequest req, HttpServletResponse resp) {
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userchangepwd.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Function used to update the new password of the User.
+	 * 
+	 * @param req
+	 * @param resp
+	 */
+	private void changePasswdUserAction(HttpServletRequest req, HttpServletResponse resp) {
+		
 	}
 	
 	/**
