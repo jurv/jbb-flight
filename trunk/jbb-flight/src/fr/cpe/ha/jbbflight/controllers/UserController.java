@@ -37,7 +37,7 @@ public class UserController extends HttpServlet {
 	
 	
 	public void newUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/newuser.jsp");			
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/usernew.jsp");			
 		try {
 			dispatcher.forward(req,resp);
 		} catch (ServletException e) {
@@ -46,7 +46,7 @@ public class UserController extends HttpServlet {
 	}
 	
 	public void viewUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/viewuser.jsp");			
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userview.jsp");			
 		try {
 			dispatcher.forward(req,resp);
 		} catch (ServletException e) {
@@ -55,7 +55,7 @@ public class UserController extends HttpServlet {
 	}
 	
 	public void editUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/edituser.jsp");			
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/useredit.jsp");			
 		try {
 			dispatcher.forward(req,resp);
 		} catch (ServletException e) {
@@ -64,7 +64,7 @@ public class UserController extends HttpServlet {
 	}
 	
 	public void listUser(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/listuser.jsp");			
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/userlist.jsp");			
 		try {
 			dispatcher.forward(req,resp);
 		} catch (ServletException e) {
