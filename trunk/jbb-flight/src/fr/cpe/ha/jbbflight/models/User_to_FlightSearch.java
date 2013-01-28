@@ -10,7 +10,16 @@ import com.google.appengine.api.datastore.Entity;
  * @author Julien Rouvier
  */
 public class User_to_FlightSearch {
-
+	
+	public final static String USER_TO_FLIGHTSEARCH = "User_to_FlightSearch";
+	public final static String USER_TO_FLIGHTSEARCH_ID = "utf_id";
+	public final static String USER_TO_FLIGHTSEARCH_DATE = "utf_date";
+	public final static String USER_TO_FLIGHTSEARCH_LEAVING_FROM = "utf_leaving_from";
+	public final static String USER_TO_FLIGHTSEARCH_GOING_TO = "utf_going_to";
+	public final static String USER_TO_FLIGHTSEARCH_DATE_DEPARTURE = "utf_date_departure";
+	public final static String USER_TO_FLIGHTSEARCH_IS_DELETED = "utf_is_deleted";
+	public final static String USER_TO_FLIGHTSEARCH_RESPONSES_COUNT = "utf_responses_count";
+	
 	/**
 	 * Id of the search
 	 */
@@ -50,13 +59,13 @@ public class User_to_FlightSearch {
 	 * Construct a User_to_FlightSearch object from a datastore entity User_to_FlightSearch
 	 */
 	public User_to_FlightSearch(Entity utf) {
-		this.utf_date            = (Date)utf.getProperty("utf_date");
-		this.utf_date_departure  = (Date)utf.getProperty("utf_date_departure");
-		this.utf_going_to        = (Integer)utf.getProperty("utf_going_to");
-		this.utf_id              = (Integer)utf.getProperty("utf_id");
-		this.utf_is_deleted      = (Boolean)utf.getProperty("utf_is_deleted");
-		this.utf_leaving_from    = (Integer)utf.getProperty("utf_leaving_from");
-		this.utf_responses_count = (Integer)utf.getProperty("utf_responses_count");
+		this.utf_date            = (Date)utf.getProperty(this.USER_TO_FLIGHTSEARCH_DATE);
+		this.utf_date_departure  = (Date)utf.getProperty(this.USER_TO_FLIGHTSEARCH_DATE_DEPARTURE);
+		this.utf_going_to        = (Integer)utf.getProperty(this.USER_TO_FLIGHTSEARCH_GOING_TO);
+		this.utf_id              = (Integer)utf.getProperty(this.USER_TO_FLIGHTSEARCH_ID);
+		this.utf_is_deleted      = (Boolean)utf.getProperty(this.USER_TO_FLIGHTSEARCH_IS_DELETED);
+		this.utf_leaving_from    = (Integer)utf.getProperty(this.USER_TO_FLIGHTSEARCH_LEAVING_FROM);
+		this.utf_responses_count = (Integer)utf.getProperty(this.USER_TO_FLIGHTSEARCH_RESPONSES_COUNT);
 	}
 	
 	/**
@@ -65,15 +74,15 @@ public class User_to_FlightSearch {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity user_to_flightSearch = new Entity("User_to_FlightSearch", this.utf_id);
+		Entity user_to_flightSearch = new Entity(this.USER_TO_FLIGHTSEARCH, this.utf_id);
 		
-		user_to_flightSearch.setProperty("utf_date", this.utf_date);
-		user_to_flightSearch.setProperty("utf_date_departure", this.utf_date_departure);
-		user_to_flightSearch.setProperty("utf_going_to", this.utf_going_to);
-		user_to_flightSearch.setProperty("utf_id", this.utf_id);
-		user_to_flightSearch.setProperty("utf_is_deleted", this.utf_is_deleted);
-		user_to_flightSearch.setProperty("utf_leaving_from", this.utf_leaving_from);
-		user_to_flightSearch.setProperty("utf_responses_count", this.utf_responses_count);
+		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_DATE, this.utf_date);
+		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_DATE_DEPARTURE, this.utf_date_departure);
+		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_GOING_TO, this.utf_going_to);
+		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_ID, this.utf_id);
+		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_IS_DELETED, this.utf_is_deleted);
+		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_LEAVING_FROM, this.utf_leaving_from);
+		user_to_flightSearch.setProperty(this.USER_TO_FLIGHTSEARCH_RESPONSES_COUNT, this.utf_responses_count);
 		
 		return user_to_flightSearch;
 	}
