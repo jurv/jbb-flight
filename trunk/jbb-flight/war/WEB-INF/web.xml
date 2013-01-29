@@ -19,6 +19,11 @@
 		<servlet-class>fr.cpe.ha.jbbflight.controllers.ApplicationController</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>FlightSearchCronController</servlet-name>
+		<servlet-class>fr.cpe.ha.jbbflight.cron.FlightSearchCronController</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>UserController</servlet-name>
 		<url-pattern>/user</url-pattern>
@@ -37,6 +42,11 @@
 	<servlet-mapping>
 		<servlet-name>UserQueueController</servlet-name>
 		<url-pattern>/system_user</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>FlightSearchCronController</servlet-name>
+		<url-pattern>/cron/flightsearch/cleanvalues</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>
