@@ -9,7 +9,7 @@
 	<p>
 		<a href="/flight?action=search"> Manage Flights </a>
 		<br/>
-		<a href="/flight?action=list"> Manage Users </a>
+		<a href="/user?action=list"> Manage Users </a>
 	</p>
 </body>
 </html>
