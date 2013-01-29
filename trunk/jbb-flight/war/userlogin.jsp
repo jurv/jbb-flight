@@ -10,4 +10,9 @@
 	<input type="reset" value="Cancel" />
 	<input type="submit" value="Register" />
 </form>
+<% if( request.getAttribute( "message" ) != null) { %>
+<span>
+	<%= request.getAttribute( "message" ) %>
+</span>
+<% } %>
 	
