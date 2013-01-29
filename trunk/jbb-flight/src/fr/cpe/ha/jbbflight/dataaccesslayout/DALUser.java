@@ -125,9 +125,12 @@ public class DALUser {
 	 * @param usr
 	 * @return
 	 */
-	public boolean UpdateUser(User usr) {
+	public User UpdateUser(User usr) {
 		
-		return AddUser(usr);
+		datastore.delete(usr.getUsr_id());
+		Key key = datastore.put(usr.toDatastoreEntity());
+		usr.setUsr_id(key);
+		return usr;
 	}
 	
 	/**

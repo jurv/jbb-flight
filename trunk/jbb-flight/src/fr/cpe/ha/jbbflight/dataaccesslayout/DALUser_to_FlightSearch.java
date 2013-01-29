@@ -117,8 +117,13 @@ public class DALUser_to_FlightSearch {
 	 * @param utf
 	 * @return
 	 */
-	public boolean UpdateUser_to_FlightSearch(User_to_FlightSearch utf) {
-		return AddUser_to_FlightSearch(utf);
+	public User_to_FlightSearch UpdateUser_to_FlightSearch(User_to_FlightSearch utf) {
+		
+		datastore.delete(utf.getUtf_id());
+		Key key = datastore.put(utf.toDatastoreEntity());
+		utf.setUtf_id(key);
+		
+		return utf;
 	}
 	
 	/**

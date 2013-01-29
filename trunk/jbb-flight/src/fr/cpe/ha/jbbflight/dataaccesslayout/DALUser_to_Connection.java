@@ -123,9 +123,12 @@ public class DALUser_to_Connection {
 	 * @param usr
 	 * @return
 	 */
-	public boolean UpdateUser_to_Connection(User_to_Connection usr) {
+	public User_to_Connection UpdateUser_to_Connection(User_to_Connection utc) {
 		
-		return AddUser_to_Connection(usr);
+		datastore.delete(utc.getUtc_id());
+		Key key = datastore.put(utc.toDatastoreEntity());
+		utc.setUtc_id(key);
+		return utc;
 	}
 	
 	/**
