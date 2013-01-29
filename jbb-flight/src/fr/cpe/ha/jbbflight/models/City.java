@@ -30,6 +30,11 @@ public class City {
 	 */
 	boolean cty_is_deleted;
 	
+	
+	public City() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	/**
 	 * Construct a City from a datastore entity city
 	 * 

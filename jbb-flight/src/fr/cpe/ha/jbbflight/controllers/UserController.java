@@ -16,9 +16,14 @@ import fr.cpe.ha.jbbflight.models.User;
  * @author Julien Rouvier
  */
 @SuppressWarnings("serial")
-public class UserController extends HttpServlet {
+public class UserController extends HttpServlet
+{
 
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	/**
+	 * 
+	 */
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
+	{
 		resp.setContentType("text/html");
 		
 		// Get the action and redirect to the correct action
@@ -39,7 +44,8 @@ public class UserController extends HttpServlet {
 		}
 	}
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
+	{
 		resp.setContentType("text/html");
 		
 		// Get the action and redirect to the correct action

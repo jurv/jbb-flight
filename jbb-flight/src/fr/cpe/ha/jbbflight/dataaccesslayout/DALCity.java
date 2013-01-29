@@ -52,7 +52,7 @@ public class DALCity {
 	public List<City> GetAllCities() {
 		
 		Query q = new Query("City")
-			.setFilter(new FilterPredicate("cty_is_deleted", FilterOperator.NOT_EQUAL, false));
+			.setFilter(new FilterPredicate("cty_is_deleted", FilterOperator.EQUAL, false));
 		
 		PreparedQuery pq = datastore.prepare(q);
 		

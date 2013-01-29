@@ -53,7 +53,7 @@ public class DALUser {
 	public List<User> GetAllUsers() {
 		
 		Query q = new Query("User")
-			.setFilter(new FilterPredicate("usr_is_deleted", FilterOperator.NOT_EQUAL, false));
+			.setFilter(new FilterPredicate("usr_is_deleted", FilterOperator.EQUAL, false));
 		
 		PreparedQuery pq = datastore.prepare(q);
 		
