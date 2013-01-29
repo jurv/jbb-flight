@@ -58,12 +58,12 @@ Cela ajoutera 3 users, 2 villes et 2 vols, permettant ainsi de tester les foncti
         Zone d'affichage des vols  concerné par la recherche                                       OK
 
   Historique de navigation
-        Enregister toutes les recherches dans le Datastore                                         ?
-        Page d'historique affichant la liste des recherches effectuées avec leur date              ?
+        Enregister toutes les recherches dans le Datastore                                         NOK
+        Page d'historique affichant la liste des recherches effectuées avec leur date              NOK
         Tache de type CRON permettant de supprimer toutes les recherches > à 2 min                 OK
 
   Pages
-        Header - Nombre d'utilisateur actuellement connectés                                       ?
+        Header - Nombre d'utilisateur actuellement connectés                                       NOK
         Header - Login de l'utilisateur actuellement connecté                                      ?
         Header - Lien vers l'historique des requêtes                                               ?
 
@@ -74,4 +74,6 @@ Cela ajoutera 3 users, 2 villes et 2 vols, permettant ainsi de tester les foncti
 * Ce qui a été commencé *
 *************************
 
-  o
+  Style CSS 
+        Les styles n'ont pas été appliquée sur toutes les pages par manque de temps
+  
