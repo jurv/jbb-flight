@@ -71,7 +71,7 @@ public class UserController extends HttpServlet
 		}		
 	}
 	
-	private void loginUserAction(HttpServletRequest req, HttpServletResponse resp) {
+	private void loginUserAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		String passwd = req.getParameter(User.USER_PASSWORD);
 		String login = req.getParameter(User.USER_LOGIN);
@@ -82,6 +82,11 @@ public class UserController extends HttpServlet
 		if ( user != null){
 			session.setAttribute(User.USER_ID, user.getUsr_id());
 		}
+		else {
+			req.setAttribute("error-message", "No User find with this login / password :(");
+			this.loginUserView(req, resp);
+		}
+			
 	}
 
 	/**
@@ -124,7 +129,7 @@ public class UserController extends HttpServlet
 		
 		// Send an email with the password to the user
 		String sub = "Welcome on VoYage Platform !";
-		String from = "registration@voyage.com";
+		String from = "benjamin.chastanier@gmail.com";
 		String body = "Your password is : " + generatedPass + " ";
 		Utils.SendMessage(req.getParameter(User.USER_EMAIL), from, sub, body);
 		
