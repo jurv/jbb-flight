@@ -1,3 +1,12 @@
+*************
+* Prérequis *
+*************
+
+Pour les tests, nous avons créé une méthode permettant d'insérer des données dans le datastore.
+Afin de vider le datastore et recharger ces données de tests, il faut faire un appel à la méthode :
+DatastoreManager.recreate()
+Cela ajoutera 3 users, 2 villes et 2 vols, permettant ainsi de tester les fonction de login, recherche de vols, création de vols, etc...
+
 *********************
 * Membres du groupe *
 *********************
@@ -59,7 +68,7 @@
         Header - Lien vers l'historique des requêtes                                               ?
 
   Resrvation de vol (Optionnel)
-        
+
 
 *************************
 * Ce qui a été commencé *
