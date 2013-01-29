@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -113,7 +114,7 @@ public class DALUser_to_Connection {
 	 */
 	public boolean AddUser_to_Connection(User_to_Connection usr) {
 		Key key = datastore.put(usr.toDatastoreEntity());
-		usr.setUtc_id(key);
+		usr.setUtc_id(key.getId());
 		return true;
 	}
 	
@@ -124,10 +125,9 @@ public class DALUser_to_Connection {
 	 * @return
 	 */
 	public User_to_Connection UpdateUser_to_Connection(User_to_Connection utc) {
-		
-		datastore.delete(utc.getUtc_id());
+		datastore.delete(KeyFactory.createKey("User_to_Connection", utc.getUtc_id()));
 		Key key = datastore.put(utc.toDatastoreEntity());
-		utc.setUtc_id(key);
+		utc.setUtc_id(key.getId());
 		return utc;
 	}
 	

@@ -3,6 +3,7 @@ package fr.cpe.ha.jbbflight.models;
 import java.util.Date;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 
 /**
@@ -28,17 +29,17 @@ public class Flight {
 	/**
 	 * Id of the flight
 	 */
-	private Key fgt_id;
+	private long fgt_id;
 
 	/**
 	 * City from where the plane will leave
 	 */
-	private Key fgt_leaving_from_id;
+	private long fgt_leaving_from_id;
 	
 	/**
 	 * City where the plain is flying to
 	 */
-	private Key fgt_going_to_id;
+	private long fgt_going_to_id;
 	
 	/**
 	 * Departure date of the flight
@@ -78,11 +79,11 @@ public class Flight {
 	 * Construct a Flight object from a datastore entity flight
 	 */
 	public Flight(Entity fgt) {
-		this.fgt_id              = (Key)fgt.getKey();
+		this.fgt_id              = (long)fgt.getKey().getId();
 		this.fgt_date_arrival    = (Date)fgt.getProperty(FLIGHT_DATE_ARRIVAL);
 		this.fgt_date_departure  = (Date)fgt.getProperty(FLIGHT_DATE_DEPARTURE);
-		this.fgt_going_to_id     = (Key)fgt.getProperty(FLIGHT_GOING_TO_ID);
-		this.fgt_leaving_from_id = (Key)fgt.getProperty(FLIGHT_LEAVING_FROM_ID);
+		this.fgt_going_to_id     = Long.parseLong((String) fgt.getProperty(FLIGHT_GOING_TO_ID));
+		this.fgt_leaving_from_id = Long.parseLong((String) fgt.getProperty(FLIGHT_LEAVING_FROM_ID));
 		this.fgt_price           = (Double)fgt.getProperty(FLIGHT_PRICE);
 		this.fgt_reserved_seats  = (Long)fgt.getProperty(FLIGHT_RESERVED_SEATS);
 		this.fgt_total_seats     = (Long)fgt.getProperty(FLIGHT_TOTAL_SEATS);
@@ -112,42 +113,42 @@ public class Flight {
 	/**
 	 * @return the fgt_id
 	 */
-	public Key getFgt_id() {
+	public long getFgt_id() {
 		return fgt_id;
 	}
 
 	/**
 	 * @param fgt_id the fgt_id to set
 	 */
-	public void setFgt_id(Key fgt_id) {
+	public void setFgt_id(long fgt_id) {
 		this.fgt_id = fgt_id;
 	}
 
 	/**
 	 * @return the fgt_leaving_from_id
 	 */
-	public Key getFgt_leaving_from_id() {
+	public long getFgt_leaving_from_id() {
 		return fgt_leaving_from_id;
 	}
 
 	/**
 	 * @param fgt_leaving_from_id the fgt_leaving_from_id to set
 	 */
-	public void setFgt_leaving_from_id(Key fgt_leaving_from_id) {
+	public void setFgt_leaving_from_id(long fgt_leaving_from_id) {
 		this.fgt_leaving_from_id = fgt_leaving_from_id;
 	}
 
 	/**
 	 * @return the fgt_going_to_id
 	 */
-	public Key getFgt_going_to_id() {
+	public long getFgt_going_to_id() {
 		return fgt_going_to_id;
 	}
 
 	/**
 	 * @param fgt_going_to_id the fgt_going_to_id to set
 	 */
-	public void setFgt_going_to_id(Key fgt_going_to_id) {
+	public void setFgt_going_to_id(long fgt_going_to_id) {
 		this.fgt_going_to_id = fgt_going_to_id;
 	}
 

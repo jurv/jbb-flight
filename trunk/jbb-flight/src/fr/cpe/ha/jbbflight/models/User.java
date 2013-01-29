@@ -3,7 +3,6 @@ package fr.cpe.ha.jbbflight.models;
 import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
 
 /**
  * Represents an application User.
@@ -30,7 +29,7 @@ public class User {
 	/**
 	 * Unique identifier for User
 	 */
-	private Key usr_id;
+	private long usr_id;
 
 	/**
 	 * First name of the User
@@ -101,7 +100,7 @@ public class User {
 		this.usr_email 					= (String)usr.getProperty(USER_EMAIL);
 		this.usr_firstname 				= (String)usr.getProperty(USER_FIRSTNAME);
 		this.usr_lastname 				= (String)usr.getProperty(USER_LASTNAME);
-		this.usr_id 					= (Key)usr.getKey();
+		this.usr_id 					= usr.getKey().getId();
 		this.usr_is_admin 				= (Boolean)usr.getProperty(USER_IS_ADMIN);
 		this.usr_is_deleted 			= (Boolean)usr.getProperty(USER_IS_DELETED);
 		this.usr_is_password_confirmed 	= (Boolean)usr.getProperty(USER_IS_PASSWORD_CONFIRMED);
@@ -134,14 +133,14 @@ public class User {
 	/**
 	 * @return the usr_id
 	 */
-	public Key getUsr_id() {
+	public long getUsr_id() {
 		return usr_id;
 	}
 
 	/**
 	 * @param usr_id the usr_id to set
 	 */
-	public void setUsr_id(Key usr_id) {
+	public void setUsr_id(long usr_id) {
 		this.usr_id = usr_id;
 	}
 

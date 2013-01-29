@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -115,7 +116,7 @@ public class DALCity {
 	 */
 	public boolean AddCity(City cty) {
 		Key key = datastore.put(cty.toDatastoreEntity());
-		cty.setCty_id(key);
+		cty.setCty_id(key.getId());
 		return true;
 	}
 	
@@ -126,10 +127,9 @@ public class DALCity {
 	 * @return
 	 */
 	public City UpdateCity(City cty) {
-		
-		datastore.delete(cty.getCty_id());
+		datastore.delete(KeyFactory.createKey("City", cty.getCty_id()));
 		Key key = datastore.put(cty.toDatastoreEntity());
-		cty.setCty_id(key);
+		cty.setCty_id(key.getId());
 		return cty;
 	}
 	

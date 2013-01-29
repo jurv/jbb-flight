@@ -24,12 +24,12 @@ public class User_to_Connection {
 	/**
 	 * Unique User's login session trace identifier.
 	 */
-	Key utc_id;
+	long utc_id;
 	
 	/**
 	 * User's identifier
 	 */
-	Key usr_id;
+	long usr_id;
 	
 	/**
 	 * True if the User's login session trace is deleted
@@ -46,9 +46,9 @@ public class User_to_Connection {
 	 * @param utc
 	 */
 	public User_to_Connection(Entity utc) {
-		this.utc_id 		= (Key)utc.getKey();
+		this.utc_id 		= utc.getKey().getId();
 		this.utc_date 		= (Date)utc.getProperty(USER_TO_CONNECTION_DATE);
-		this.usr_id     	= (Key)utc.getProperty(User.USER_ID);
+		this.usr_id     	= Long.parseLong((String)utc.getProperty(User.USER_ID));
 		this.utc_is_deleted = (Boolean)utc.getProperty(USER_TO_CONNECTION_IS_DELETED);
 	}
 	
@@ -69,28 +69,28 @@ public class User_to_Connection {
 	/**
 	 * @return the utc_id
 	 */
-	public Key getUtc_id() {
+	public long getUtc_id() {
 		return utc_id;
 	}
 
 	/**
 	 * @param utc_id the utc_id to set
 	 */
-	public void setUtc_id(Key utc_id) {
+	public void setUtc_id(long utc_id) {
 		this.utc_id = utc_id;
 	}
 
 	/**
 	 * @return the usr_id
 	 */
-	public Key getUsr_id() {
+	public long getUsr_id() {
 		return usr_id;
 	}
 
 	/**
 	 * @param usr_id the usr_id to set
 	 */
-	public void setUsr_id(Key usr_id) {
+	public void setUsr_id(long usr_id) {
 		this.usr_id = usr_id;
 	}
 
