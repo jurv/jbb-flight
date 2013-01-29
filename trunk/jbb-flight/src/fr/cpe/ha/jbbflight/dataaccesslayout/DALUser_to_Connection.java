@@ -7,6 +7,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -111,9 +112,8 @@ public class DALUser_to_Connection {
 	 * @return
 	 */
 	public boolean AddUser_to_Connection(User_to_Connection usr) {
-		
-		datastore.put(usr.toDatastoreEntity());
-		
+		Key key = datastore.put(usr.toDatastoreEntity());
+		usr.setUtc_id(key.toString());
 		return true;
 	}
 	
