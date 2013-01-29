@@ -95,13 +95,13 @@ public class DALCity {
 	 * @param id City's Unique identifier
 	 * @return
 	 */
-	public City GetCityById(Key id) {
+	public City GetCityById(long id) {
 		
 		Query q =  new Query("City")
         	.setFilter(new FilterPredicate(
         					Entity.KEY_RESERVED_PROPERTY,
         					Query.FilterOperator.EQUAL, 
-        					id)
+        					KeyFactory.createKey("City", id))
                        );
 		PreparedQuery pq = datastore.prepare(q);
 

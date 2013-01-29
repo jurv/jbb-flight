@@ -93,13 +93,13 @@ public class DALUser_to_Connection {
 	 * @param id User_to_Connection's Unique identifier
 	 * @return
 	 */
-	public User_to_Connection GetUser_to_ConnectionById(Key id) {
+	public User_to_Connection GetUser_to_ConnectionById(long id) {
 		
 		Query q =  new Query("User_to_Connection")
         	.setFilter(new FilterPredicate(
         					Entity.KEY_RESERVED_PROPERTY,
         					Query.FilterOperator.EQUAL, 
-        					id)
+        					KeyFactory.createKey("User_to_Connection", id))
                        );
 		PreparedQuery pq = datastore.prepare(q);
 

@@ -87,13 +87,13 @@ public class DALUser_to_FlightSearch {
 	 * @param id User_to_FlightSearch's Unique identifier
 	 * @return
 	 */
-	public User_to_FlightSearch GetUser_to_FlightSearchById(Key id) {
+	public User_to_FlightSearch GetUser_to_FlightSearchById(long id) {
 		
 		Query q =  new Query("User_to_FlightSearch")
         	.setFilter(new FilterPredicate(
         					Entity.KEY_RESERVED_PROPERTY,
         					Query.FilterOperator.EQUAL, 
-        					id)
+        					KeyFactory.createKey("User_to_FlightSearch", id))
                        );
 		PreparedQuery pq = datastore.prepare(q);
 
