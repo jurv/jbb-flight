@@ -231,14 +231,20 @@ public class UserController extends HttpServlet
 		// Get the params from the form
 		String passwd1 = req.getParameter("usr_password");
 		String passwd2 = req.getParameter("usr_re_password");
-		if(passwd1.equals(passwd2) && !passwd1.isEmpty() && usr_id!= null && usr_id != null) {
+		if(passwd1.equals(passwd2) && !passwd1.isEmpty() && usr_id!= null) {
 			// Get the current user
 			User usr = DALUser.getInstance().GetUserById(usr_id);
 			usr.setUsr_password(passwd1);
 			usr.setUsr_is_password_confirmed(true);
 			DALUser.getInstance().UpdateUser(usr);
+			
 			// Redirect to the dashboard
-			resp.sendRedirect(resp.encodeRedirectURL("/app?action=dashboard"));
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/dashboard.jsp");			
+			try {
+				dispatcher.forward(req,resp);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			}
 		}
 		else if(!passwd1.equals(passwd2)) {
 			req.setAttribute("error-message", "Error : The two passwords are differents ! ");
