@@ -1,5 +1,6 @@
 package fr.cpe.ha.jbbflight.controllers;
 
+import java.io.Console;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,6 +42,9 @@ public class UserController extends HttpServlet
 			this.loginUserView(req, resp);
 		}else if("changepwd".equals(action)){
 			this.changePasswdUserView(req, resp);
+		}else {
+			resp.sendRedirect("/user?action=login");
+			this.loginUserView(req, resp);
 		}
 	}
 
@@ -73,14 +77,15 @@ public class UserController extends HttpServlet
 	
 	private void loginUserAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
-		String passwd = req.getParameter(User.USER_PASSWORD);
-		String login = req.getParameter(User.USER_LOGIN);
+		String passwd = (String)req.getParameter(User.USER_PASSWORD);
+		String login = (String)req.getParameter(User.USER_LOGIN);
 		javax.servlet.http.HttpSession session = req.getSession();
 		
 		DALUser dalUser = DALUser.getInstance();
 		User user = dalUser.DoLogin(login, passwd);
 		if ( user != null){
 			session.setAttribute(User.USER_ID, user.getUsr_id());
+			resp.sendRedirect(resp.encodeRedirectURL("/app?action=dashboard"));
 		}
 		else {
 			req.setAttribute("error-message", "No User find with this login / password :(");
