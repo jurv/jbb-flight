@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import static com.google.appengine.api.taskqueue.TaskOptions.Builder.*;
+
 import utils.Utils;
 import fr.cpe.ha.jbbflight.dataaccesslayout.DALUser;
 import fr.cpe.ha.jbbflight.models.User;
@@ -19,7 +23,6 @@ import fr.cpe.ha.jbbflight.models.User;
 @SuppressWarnings("serial")
 public class UserController extends HttpServlet
 {
-
 	/**
 	 * 
 	 */
@@ -118,26 +121,19 @@ public class UserController extends HttpServlet
 	 */
 	private void newUserAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
-		User usr = new User();
-		usr.setUsr_birthdate(Utils.getDateFromString(req.getParameter(User.USER_BIRTHDATE), ""));
-		usr.setUsr_email(req.getParameter(User.USER_EMAIL));
-		usr.setUsr_firstname(req.getParameter(User.USER_FIRSTNAME));
-		usr.setUsr_lastname(req.getParameter(User.USER_LASTNAME));
-		usr.setUsr_login(req.getParameter(User.USER_LOGIN));
+		// Using the newUser queue to put the new user in the datastore.
+		Queue queue = QueueFactory.getQueue("addUser");
+		queue.add(withUrl("/system_user")
+				.param("action", "new")
+				.param(User.USER_BIRTHDATE, req.getParameter(User.USER_BIRTHDATE))
+				.param(User.USER_EMAIL, req.getParameter(User.USER_EMAIL))
+				.param(User.USER_FIRSTNAME, req.getParameter(User.USER_FIRSTNAME))
+				.param(User.USER_LASTNAME, req.getParameter(User.USER_LASTNAME))
+				.param(User.USER_LOGIN, req.getParameter(User.USER_LOGIN))
+				.param(User.USER_PASSWORD, req.getParameter(User.USER_PASSWORD))
+				);
 		
-		// Generate a password
-		String generatedPass = String.valueOf(usr.hashCode());
-		usr.setUsr_password(generatedPass);
-		
-		DALUser dalUser = DALUser.getInstance();
-		dalUser.AddUser(usr);
-		
-		// Send an email with the password to the user
-		String sub = "Welcome on VoYage Platform !";
-		String from = "benjamin.chastanier@gmail.com";
-		String body = "Your password is : " + generatedPass + " ";
-		Utils.SendMessage(req.getParameter(User.USER_EMAIL), from, sub, body);
-		
+		// Set the message for the new User
 		req.setAttribute("message", "Check your mails to find your password :) ");
 		
 		// Redirect to the login form
@@ -240,7 +236,8 @@ public class UserController extends HttpServlet
 			usr.setUsr_password(passwd1);
 			usr.setUsr_is_password_confirmed(true);
 			DALUser.getInstance().UpdateUser(usr);
-			this.viewUserView(req, resp);
+			// Redirect to the dashboard
+			resp.sendRedirect(resp.encodeRedirectURL("/app?action=dashboard"));
 		}
 		else if(!passwd1.equals(passwd2)) {
 			req.setAttribute("error-message", "Error : The two passwords are differents ! ");
