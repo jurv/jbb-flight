@@ -95,7 +95,7 @@ public class DALFlight {
 	 * @param id Flight's Unique identifier
 	 * @return
 	 */
-	public Flight GetFlightById(String id) {
+	public Flight GetFlightById(Key id) {
 		
 		Query q =  new Query("Flight")
         	.setFilter(new FilterPredicate(
@@ -116,7 +116,7 @@ public class DALFlight {
 	 */
 	public boolean AddFlight(Flight fgt) {
 		Key key = datastore.put(fgt.toDatastoreEntity());
-		fgt.setFgt_id(key.toString());
+		fgt.setFgt_id(key);
 		return true;
 	}
 	

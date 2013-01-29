@@ -3,6 +3,7 @@ package fr.cpe.ha.jbbflight.models;
 import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
 
 /**
  * Represents a User's login session trace.
@@ -23,12 +24,12 @@ public class User_to_Connection {
 	/**
 	 * Unique User's login session trace identifier.
 	 */
-	String utc_id;
+	Key utc_id;
 	
 	/**
 	 * User's identifier
 	 */
-	String usr_id;
+	Key usr_id;
 	
 	/**
 	 * True if the User's login session trace is deleted
@@ -45,9 +46,9 @@ public class User_to_Connection {
 	 * @param utc
 	 */
 	public User_to_Connection(Entity utc) {
-		this.usr_id 		= (String)utc.getKey().toString();
+		this.utc_id 		= (Key)utc.getKey();
 		this.utc_date 		= (Date)utc.getProperty(USER_TO_CONNECTION_DATE);
-		this.utc_id     	= (String)utc.getProperty(USER_TO_CONNECTION_ID);
+		this.usr_id     	= (Key)utc.getProperty(User.USER_ID);
 		this.utc_is_deleted = (Boolean)utc.getProperty(USER_TO_CONNECTION_IS_DELETED);
 	}
 	
@@ -68,28 +69,28 @@ public class User_to_Connection {
 	/**
 	 * @return the utc_id
 	 */
-	public String getUtc_id() {
+	public Key getUtc_id() {
 		return utc_id;
 	}
 
 	/**
 	 * @param utc_id the utc_id to set
 	 */
-	public void setUtc_id(String utc_id) {
+	public void setUtc_id(Key utc_id) {
 		this.utc_id = utc_id;
 	}
 
 	/**
 	 * @return the usr_id
 	 */
-	public String getUsr_id() {
+	public Key getUsr_id() {
 		return usr_id;
 	}
 
 	/**
 	 * @param usr_id the usr_id to set
 	 */
-	public void setUsr_id(String usr_id) {
+	public void setUsr_id(Key usr_id) {
 		this.usr_id = usr_id;
 	}
 

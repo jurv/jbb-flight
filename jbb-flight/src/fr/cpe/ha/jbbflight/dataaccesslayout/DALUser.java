@@ -93,7 +93,7 @@ public class DALUser {
 	 * @param id User's Unique identifier
 	 * @return
 	 */
-	public User GetUserById(String id) {
+	public User GetUserById(Key id) {
 		
 		Query q =  new Query("User")
         	.setFilter(new FilterPredicate(
@@ -115,7 +115,7 @@ public class DALUser {
 	public boolean AddUser(User usr) {
 		usr.setUsr_date_creation(new Date());
 		Key key = datastore.put(usr.toDatastoreEntity());
-		usr.setUsr_id(key.toString());
+		usr.setUsr_id(key);
 		return true;
 	}
 	

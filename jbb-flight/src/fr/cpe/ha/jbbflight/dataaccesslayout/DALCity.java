@@ -94,7 +94,7 @@ public class DALCity {
 	 * @param id City's Unique identifier
 	 * @return
 	 */
-	public City GetCityById(String id) {
+	public City GetCityById(Key id) {
 		
 		Query q =  new Query("City")
         	.setFilter(new FilterPredicate(
@@ -115,7 +115,7 @@ public class DALCity {
 	 */
 	public boolean AddCity(City cty) {
 		Key key = datastore.put(cty.toDatastoreEntity());
-		cty.setCty_id(key.toString());
+		cty.setCty_id(key);
 		return true;
 	}
 	

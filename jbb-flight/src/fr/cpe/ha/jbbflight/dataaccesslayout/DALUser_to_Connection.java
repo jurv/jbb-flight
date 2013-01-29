@@ -92,7 +92,7 @@ public class DALUser_to_Connection {
 	 * @param id User_to_Connection's Unique identifier
 	 * @return
 	 */
-	public User_to_Connection GetUser_to_ConnectionById(String id) {
+	public User_to_Connection GetUser_to_ConnectionById(Key id) {
 		
 		Query q =  new Query("User_to_Connection")
         	.setFilter(new FilterPredicate(
@@ -113,7 +113,7 @@ public class DALUser_to_Connection {
 	 */
 	public boolean AddUser_to_Connection(User_to_Connection usr) {
 		Key key = datastore.put(usr.toDatastoreEntity());
-		usr.setUtc_id(key.toString());
+		usr.setUtc_id(key);
 		return true;
 	}
 	

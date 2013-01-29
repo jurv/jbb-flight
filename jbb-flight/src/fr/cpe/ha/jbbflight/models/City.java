@@ -1,6 +1,7 @@
 package fr.cpe.ha.jbbflight.models;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
 
 /**
  * 
@@ -18,7 +19,7 @@ public class City {
 	/*
 	 * Unique identifier of city
 	 */
-	private String cty_id;
+	private Key cty_id;
 	
 	/*
 	 * Name of the city
@@ -41,7 +42,7 @@ public class City {
 	 * @param cty
 	 */
 	public City (Entity cty) {
-		this.cty_id 		= cty.getKey().toString();
+		this.cty_id 		= cty.getKey();
 		this.cty_is_deleted = (Boolean)cty.getProperty(CITY_IS_DELETED);
 		this.cty_label      = (String)cty.getProperty(CITY_LABEL);
 	}
@@ -62,14 +63,14 @@ public class City {
 	/**
 	 * @return the cty_id
 	 */
-	public String getCty_id() {
+	public Key getCty_id() {
 		return cty_id;
 	}
 
 	/**
 	 * @param cty_id the cty_id to set
 	 */
-	public void setCty_id(String cty_id) {
+	public void setCty_id(Key cty_id) {
 		this.cty_id = cty_id;
 	}
 
