@@ -36,7 +36,7 @@
 </head>
 <body>
 	<header>
-		
+		<jsp:include page="headerfunction.jsp" />
 	</header>
 	<nav>
 	</nav>
