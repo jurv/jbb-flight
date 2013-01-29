@@ -93,7 +93,7 @@ public class DALCity {
 	 * @param id City's Unique identifier
 	 * @return
 	 */
-	public City GetCityById(int id) {
+	public City GetCityById(String id) {
 		
 		Query q =  new Query("City")
         	.setFilter(new FilterPredicate(

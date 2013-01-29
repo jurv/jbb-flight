@@ -92,7 +92,7 @@ public class DALUser {
 	 * @param id User's Unique identifier
 	 * @return
 	 */
-	public User GetUserById(int id) {
+	public User GetUserById(String id) {
 		
 		Query q =  new Query("User")
         	.setFilter(new FilterPredicate(
