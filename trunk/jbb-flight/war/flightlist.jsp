@@ -1,3 +1,5 @@
+<jsp:include page="header.jsp" />
+
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="fr.cpe.ha.jbbflight.dataaccesslayout.DALFlight"%>
@@ -37,3 +39,5 @@
 	</tr>
 	<% } %>
 </table>
+
+<jsp:include page="footer.jsp" />
