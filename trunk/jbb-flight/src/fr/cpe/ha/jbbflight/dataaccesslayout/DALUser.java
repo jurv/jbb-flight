@@ -71,7 +71,7 @@ public class DALUser {
 	 * Get all Users with the specified filters from the datastore.
 	 * @return
 	 */
-	public List<User> GetAllUsers(List<FilterPredicate> filters) {
+	public List<User> GetAllUsersWithFilter(List<FilterPredicate> filters) {
 		
 		Query q = new Query("User");
 		
@@ -159,7 +159,7 @@ public class DALUser {
 		filters.add(new FilterPredicate(User.USER_LOGIN, FilterOperator.EQUAL, login));
 		filters.add(new FilterPredicate(User.USER_PASSWORD, FilterOperator.EQUAL, passwd));
 		
-		List <User>users = this.GetAllUsers(filters);
+		List <User>users = this.GetAllUsersWithFilter(filters);
 		
 		if (users!=null && users.size() > 0){
 			return users.get(0);

@@ -46,6 +46,8 @@ public class UserController extends HttpServlet
 			this.loginUserView(req, resp);
 		}else if("changepwd".equals(action)){
 			this.changePasswdUserView(req, resp);
+		}else if ("delete".equals(action)){
+			this.deleteUser(req, resp);
 		}else {
 			resp.sendRedirect("/user?action=login");
 			this.loginUserView(req, resp);
@@ -226,7 +228,7 @@ public class UserController extends HttpServlet
 		javax.servlet.http.HttpSession session = req.getSession(true);
 		
 		// Get the user key from the session
-		Key usr_id = (Key)session.getAttribute("usr_id");
+		Long usr_id = (Long)session.getAttribute("usr_id");
 		
 		// Get the params from the form
 		String passwd1 = req.getParameter("usr_password");
@@ -259,5 +261,20 @@ public class UserController extends HttpServlet
 			this.changePasswdUserView(req, resp);
 		}
 	}
+	
+	/**
+	 * Function designed to delete logically the user 
+	 * @param req
+	 * @param resp
+	 * @throws IOException 
+	 */
+	private void deleteUser(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+		long userId = Long.parseLong(req.getParameter("user"));
+		DALUser dalUser = DALUser.getInstance();
+		User user =dalUser.GetUserById(userId);
+		dalUser.RemoveUser(user);
+		this.listUserView(req, resp);
+	}	
 	
 }

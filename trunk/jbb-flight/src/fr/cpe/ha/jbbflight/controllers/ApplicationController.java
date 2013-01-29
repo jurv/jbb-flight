@@ -48,7 +48,7 @@ public class ApplicationController extends HttpServlet{
 		// Get the current user
 		HttpSession session = req.getSession();
 		
-		Key usr_id = (Key)session.getAttribute(User.USER_ID);
+		Long usr_id = (Long)session.getAttribute(User.USER_ID);
 		User usr = null;
 		
 		if(usr_id != null && usr_id != null)
