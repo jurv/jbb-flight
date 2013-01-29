@@ -15,4 +15,9 @@
 	<%= request.getAttribute( "message" ) %>
 </span>
 <% } %>
+<% if( request.getAttribute( "error-message" ) != null) { %>
+<span style="color : red;">
+	<%= request.getAttribute( "error-message" ) %>
+</span>
+<% } %>
 	

@@ -52,7 +52,7 @@ public class Utils {
         
 		try {
             Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(from, from));
+            msg.setFrom(new InternetAddress(from, "Registration service @Voyages.com"));
             msg.addRecipient(Message.RecipientType.TO,
                              new InternetAddress(to, to));
             msg.setSubject(subj);
