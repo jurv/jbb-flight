@@ -3,10 +3,7 @@
 <%@page import="fr.cpe.ha.jbbflight.dataaccesslayout.DALCity"%>
 <%@page import="fr.cpe.ha.jbbflight.models.City"%>
 <%
-	DatastoreManager di = new DatastoreManager();
-	di.clear();
-	di.insert();
-
+	DatastoreManager.recreate();
 	List<City> cities = DALCity.getInstance().GetAllCities();
 %>
 
@@ -14,8 +11,9 @@
 <form id="new_flight_form" method="POST">
 	<label for="fgt_leaving_from_id">Departure city</label>
 	<select id="fgt_leaving_from_id" name="fgt_leaving_from_id">
-		<% for(City c : cities) {
-			String id = c.getCty_id();
+		<% 
+		for(City c : cities) {
+			Long id = c.getCty_id();
 			String name = c.getCty_label();
 		%>
 			<option 
@@ -29,7 +27,7 @@
 	<label for="fgt_going_to_id">Arrival city</label>
 	<select id="fgt_going_to_id" name="fgt_going_to_id">
 		<% for(City c : cities) {
-			String id = c.getCty_id();
+			Long id = c.getCty_id();
 			String name = c.getCty_label();
 		%>
 			<option 

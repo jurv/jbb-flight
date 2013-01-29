@@ -7,6 +7,14 @@ Afin de vider le datastore et recharger ces données de tests, il faut faire un 
 DatastoreManager.recreate()
 Cela ajoutera 3 users, 2 villes et 2 vols, permettant ainsi de tester les fonction de login, recherche de vols, création de vols, etc...
 
+Un appel automatique a cette méthode peut être fait automatiquement en appellant l'URL de l'application jbb-flight.appspot.com/datastore
+Cette action redirigera vers la page de login.
+
+Les utilisateurs / mots de passe disponibles dans les données de test sont :
+ben / ben (seul utilisateur avec les droits administrateur)
+ju / ju
+baddou / baddou
+
 *********************
 * Membres du groupe *
 *********************

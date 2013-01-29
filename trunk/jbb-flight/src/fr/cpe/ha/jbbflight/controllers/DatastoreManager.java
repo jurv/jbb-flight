@@ -1,8 +1,13 @@
 package fr.cpe.ha.jbbflight.controllers;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -19,10 +24,24 @@ import fr.cpe.ha.jbbflight.models.Flight;
 import fr.cpe.ha.jbbflight.models.User;
 import fr.cpe.ha.jbbflight.models.User_to_FlightSearch;
 
-public class DatastoreManager {
+@SuppressWarnings("serial")
+public class DatastoreManager extends HttpServlet {
 
 	private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	private static SimpleDateFormat sdf       = new SimpleDateFormat("dd/MM/yyyy");;
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html");
+		
+		try {
+			DatastoreManager.recreate();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		resp.sendRedirect("/user");
+	}
 	
 	public static void recreate() throws ParseException
 	{
