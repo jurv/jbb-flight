@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -116,7 +117,7 @@ public class DALFlight {
 	 */
 	public boolean AddFlight(Flight fgt) {
 		Key key = datastore.put(fgt.toDatastoreEntity());
-		fgt.setFgt_id(key);
+		fgt.setFgt_id(key.getId());
 		return true;
 	}
 	
@@ -127,10 +128,9 @@ public class DALFlight {
 	 * @return
 	 */
 	public Flight UpdateFlight(Flight fgt) {
-		
-		datastore.delete(fgt.getFgt_id());
+		datastore.delete(KeyFactory.createKey("Flight", fgt.getFgt_id()));
 		Key key = datastore.put(fgt.toDatastoreEntity());
-		fgt.setFgt_id(key);
+		fgt.setFgt_id(key.getId());
 		return fgt;
 	}
 	

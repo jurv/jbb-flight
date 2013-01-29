@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -107,7 +108,7 @@ public class DALUser_to_FlightSearch {
 	 */
 	public boolean AddUser_to_FlightSearch(User_to_FlightSearch utf) {
 		Key key = datastore.put(utf.toDatastoreEntity());
-		utf.setUtf_id(key);
+		utf.setUtf_id(key.getId());
 		return true;
 	}
 	
@@ -118,11 +119,9 @@ public class DALUser_to_FlightSearch {
 	 * @return
 	 */
 	public User_to_FlightSearch UpdateUser_to_FlightSearch(User_to_FlightSearch utf) {
-		
-		datastore.delete(utf.getUtf_id());
+		datastore.delete(KeyFactory.createKey("User_to_FlightSearch", utf.getUtf_id()));
 		Key key = datastore.put(utf.toDatastoreEntity());
-		utf.setUtf_id(key);
-		
+		utf.setUtf_id(key.getId());
 		return utf;
 	}
 	

@@ -24,7 +24,7 @@ public class User_to_FlightSearch {
 	/**
 	 * Id of the search
 	 */
-	private Key utf_id;
+	private long utf_id;
 	
 	/**
 	 * Date of the search
@@ -34,12 +34,12 @@ public class User_to_FlightSearch {
 	/**
 	 * City from where the plane will leave
 	 */
-	private Key utf_leaving_from;
+	private long utf_leaving_from;
 	
 	/**
 	 * City where the plain is flying to
 	 */
-	private Key utf_going_to;
+	private long utf_going_to;
 	
 	/**
 	 * Departure date of the flight
@@ -66,10 +66,10 @@ public class User_to_FlightSearch {
 	public User_to_FlightSearch(Entity utf) {
 		this.utf_date            = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE);
 		this.utf_date_departure  = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE_DEPARTURE);
-		this.utf_going_to        = (Key)utf.getProperty(USER_TO_FLIGHTSEARCH_GOING_TO);
-		this.utf_id              = (Key)utf.getKey();
+		this.utf_going_to        = Long.parseLong((String)utf.getProperty(USER_TO_FLIGHTSEARCH_GOING_TO));
+		this.utf_id              = utf.getKey().getId();
 		this.utf_is_deleted      = (Boolean)utf.getProperty(USER_TO_FLIGHTSEARCH_IS_DELETED);
-		this.utf_leaving_from    = (Key)utf.getProperty(USER_TO_FLIGHTSEARCH_LEAVING_FROM);
+		this.utf_leaving_from    = Long.parseLong((String)utf.getProperty(USER_TO_FLIGHTSEARCH_LEAVING_FROM));
 		this.utf_responses_count = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_RESPONSES_COUNT);
 	}
 	
@@ -95,14 +95,14 @@ public class User_to_FlightSearch {
 	/**
 	 * @return the utf_id
 	 */
-	public Key getUtf_id() {
+	public long getUtf_id() {
 		return utf_id;
 	}
 
 	/**
 	 * @param utf_id the utf_id to set
 	 */
-	public void setUtf_id(Key utf_id) {
+	public void setUtf_id(long utf_id) {
 		this.utf_id = utf_id;
 	}
 
@@ -123,28 +123,28 @@ public class User_to_FlightSearch {
 	/**
 	 * @return the utf_leaving_from
 	 */
-	public Key getUtf_leaving_from() {
+	public long getUtf_leaving_from() {
 		return utf_leaving_from;
 	}
 
 	/**
 	 * @param utf_leaving_from the utf_leaving_from to set
 	 */
-	public void setUtf_leaving_from(Key utf_leaving_from) {
+	public void setUtf_leaving_from(long utf_leaving_from) {
 		this.utf_leaving_from = utf_leaving_from;
 	}
 
 	/**
 	 * @return the utf_going_to
 	 */
-	public Key getUtf_going_to() {
+	public long getUtf_going_to() {
 		return utf_going_to;
 	}
 
 	/**
 	 * @param utf_going_to the utf_going_to to set
 	 */
-	public void setUtf_going_to(Key utf_going_to) {
+	public void setUtf_going_to(long utf_going_to) {
 		this.utf_going_to = utf_going_to;
 	}
 

@@ -9,6 +9,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -115,7 +116,7 @@ public class DALUser {
 	public boolean AddUser(User usr) {
 		usr.setUsr_date_creation(new Date());
 		Key key = datastore.put(usr.toDatastoreEntity());
-		usr.setUsr_id(key);
+		usr.setUsr_id(key.getId());
 		return true;
 	}
 	
@@ -126,10 +127,9 @@ public class DALUser {
 	 * @return
 	 */
 	public User UpdateUser(User usr) {
-		
-		datastore.delete(usr.getUsr_id());
+		datastore.delete(KeyFactory.createKey("User", usr.getUsr_id()));
 		Key key = datastore.put(usr.toDatastoreEntity());
-		usr.setUsr_id(key);
+		usr.setUsr_id(key.getId());
 		return usr;
 	}
 	
