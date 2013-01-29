@@ -1,14 +1,26 @@
+<jsp:include page="headerlogin.jsp" />
 
-<h1> Login </h1>
-<form id="login-form" method="POST">
-	<label for="usr_login">Login</label>
-	<input id="usr_login" name="usr_login" type="text" value="" required/> <br/>
-	
-	<label for="usr_password">Password</label>
-	<input id="usr_password" name="usr_password" type="password" value="" required/> <br/>
 
-	<input type="reset" value="Cancel" />
-	<input type="submit" value="Login" />
+<form method="POST" id="loginform">
+	<fieldset>
+		<section>
+			<label for="usr_login">Login</label>
+			<div>
+				<input id="usr_login" name="usr_login" type="text" value="" required/> <br/>
+			</div>
+		</section>
+		<section>
+			<label for="usr_password">Password</label>
+			<div>
+				<input id="usr_password" name="usr_password" type="password" value="" required/> <br/>
+			</div>
+		</section>
+		<section>
+			<div>
+				<button class="fr submit">Login</button>
+			</div>
+		</section>
+	</fieldset>
 </form>
 <p>
 	New to VoYage ? 
@@ -24,4 +36,6 @@
 	<%= request.getAttribute( "error-message" ) %>
 </span>
 <% } %>
+
+<jsp:include page="footer.jsp" />
 	

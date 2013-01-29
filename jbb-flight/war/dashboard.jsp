@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset=utf-8 />
-	<title>YoYage Application</title>
-</head>
-<body>
+<jsp:include page="header.jsp" />
+
 	<h1> Dashboard </h1>
 	<p>
-		<a href="/flight?action=search"> Manage Flights </a>
+		<a href="/flight?action=search" class="fr submit"> Manage Flights </a>
 		<br/>
-		<a href="/user?action=list"> Manage Users </a>
+		<a href="/user?action=list" class="fr submit"> Manage Users </a>
 	</p>
-</body>
-</html>
+
+<jsp:include page="footer.jsp" />
