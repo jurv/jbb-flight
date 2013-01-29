@@ -114,10 +114,21 @@ public class UserController extends HttpServlet
 		usr.setUsr_firstname(req.getParameter(User.USER_FIRSTNAME));
 		usr.setUsr_lastname(req.getParameter(User.USER_LASTNAME));
 		usr.setUsr_login(req.getParameter(User.USER_LOGIN));
-		usr.setUsr_password(req.getParameter(User.USER_IS_PASSWORD_CONFIRMED));
+		
+		// Generate a password
+		String generatedPass = String.valueOf(usr.hashCode());
+		usr.setUsr_password(generatedPass);
 		
 		DALUser dalUser = DALUser.getInstance();
 		dalUser.AddUser(usr);
+		
+		// Send an email with the password to the user
+		String sub = "Welcome on VoYage Platform !";
+		String from = "registration@voyage.com";
+		String body = "Your password is : " + generatedPass + " ";
+		Utils.SendMessage(req.getParameter(User.USER_EMAIL), from, sub, body);
+		
+		req.setAttribute("message", "Check your mails to find your password :) ");
 		
 		// Redirect to the login form
 		this.loginUserView(req, resp);
