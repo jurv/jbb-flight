@@ -41,7 +41,7 @@ public class City {
 	 * @param cty
 	 */
 	public City (Entity cty) {
-		this.cty_id 		= (String)cty.getProperty(CITY_ID);
+		this.cty_id 		= cty.getKey().toString();
 		this.cty_is_deleted = (Boolean)cty.getProperty(CITY_IS_DELETED);
 		this.cty_label      = (String)cty.getProperty(CITY_LABEL);
 	}
@@ -51,9 +51,8 @@ public class City {
 	 * @return
 	 */
 	public Entity toDatastoreEntity() {
-		
-		Entity city = new Entity(CITY, CITY_ID);
-		city.setProperty(CITY_ID, this.cty_id);
+		Entity city = new Entity(CITY);
+		city.setProperty(CITY_ID, this.getCty_id());
 		city.setProperty(CITY_IS_DELETED, this.cty_is_deleted);
 		city.setProperty(CITY_LABEL, this.cty_label);
 		

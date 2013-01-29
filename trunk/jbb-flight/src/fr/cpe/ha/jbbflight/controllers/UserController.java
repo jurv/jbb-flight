@@ -193,8 +193,9 @@ public class UserController extends HttpServlet
 	 * 
 	 * @param req
 	 * @param resp
+	 * @throws IOException 
 	 */
-	private void changePasswdUserAction(HttpServletRequest req, HttpServletResponse resp) {
+	private void changePasswdUserAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		javax.servlet.http.HttpSession session = req.getSession();
 		
@@ -209,14 +210,21 @@ public class UserController extends HttpServlet
 			User usr = DALUser.getInstance().GetUserById(usr_id);
 			usr.setUsr_password(passwd1);
 			usr.setUsr_is_password_confirmed(true);
+			DALUser.getInstance().UpdateUser(usr);
+			this.viewUserView(req, resp);
 		}
-		else if( usr_id.isEmpty() ) {
+		else if(!passwd1.equals(passwd2)) {
 			req.setAttribute("error-message", "Error : There is a problem with your session ! ");
+			this.changePasswdUserView(req, resp);
+		}
+		else if( usr_id == null || usr_id.isEmpty() ) {
+			req.setAttribute("error-message", "Error : There is a problem with your session ! ");
+			this.changePasswdUserView(req, resp);
 		}
 		else {
 			req.setAttribute("error-message", "The two passwords are differents !");
+			this.changePasswdUserView(req, resp);
 		}
-		
 	}
 	
 }

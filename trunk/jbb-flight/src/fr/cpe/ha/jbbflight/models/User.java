@@ -100,7 +100,7 @@ public class User {
 		this.usr_email 					= (String)usr.getProperty(USER_EMAIL);
 		this.usr_firstname 				= (String)usr.getProperty(USER_FIRSTNAME);
 		this.usr_lastname 				= (String)usr.getProperty(USER_LASTNAME);
-		this.usr_id 					= (String)usr.getProperty(USER_ID);
+		this.usr_id 					= (String)usr.getKey().toString();
 		this.usr_is_admin 				= (Boolean)usr.getProperty(USER_IS_ADMIN);
 		this.usr_is_deleted 			= (Boolean)usr.getProperty(USER_IS_DELETED);
 		this.usr_is_password_confirmed 	= (Boolean)usr.getProperty(USER_IS_PASSWORD_CONFIRMED);
@@ -114,7 +114,7 @@ public class User {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity user = new Entity(USER, USER_ID);
+		Entity user = new Entity(USER);
 		user.setProperty(USER_BIRTHDATE, this.usr_birthdate);
 		user.setProperty(USER_DATE_CREATION, this.usr_date_creation);
 		user.setProperty(USER_DATE_DELETE, this.usr_date_delete);

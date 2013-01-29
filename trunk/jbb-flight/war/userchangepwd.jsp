@@ -11,3 +11,8 @@
 	<input type="reset" value="Cancel" />
 	<input type="submit" value="Register" />
 </form>
+<% if(session.getAttribute( "error-message" ) != null) { %>
+<span style="color : red;">
+	<%= session.getAttribute( "error-message" ) %>
+</span>
+<% } %>
