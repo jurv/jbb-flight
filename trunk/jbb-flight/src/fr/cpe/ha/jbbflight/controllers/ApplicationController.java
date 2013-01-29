@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.appengine.api.datastore.Key;
+
+import fr.cpe.ha.jbbflight.dataaccesslayout.DALUser;
 import fr.cpe.ha.jbbflight.models.User;
 
 /**
@@ -45,9 +48,13 @@ public class ApplicationController extends HttpServlet{
 		// Get the current user
 		HttpSession session = req.getSession();
 		
-		String usr_id = (String)session.getAttribute(User.USER_ID);
+		Key usr_id = (Key)session.getAttribute(User.USER_ID);
+		User usr = null;
 		
-		if(usr_id != null && !usr_id.isEmpty()) {
+		if(usr_id != null && usr_id != null)
+			usr = DALUser.getInstance().GetUserById(usr_id);
+		
+		if(usr_id != null && usr_id != null && usr != null && usr.getUsr_is_password_confirmed() == true) {
 			// That's not the first connection
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/dashboard.jsp");			
 			try {

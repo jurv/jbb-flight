@@ -86,7 +86,7 @@ public class DALUser_to_FlightSearch {
 	 * @param id User_to_FlightSearch's Unique identifier
 	 * @return
 	 */
-	public User_to_FlightSearch GetUser_to_FlightSearchById(String id) {
+	public User_to_FlightSearch GetUser_to_FlightSearchById(Key id) {
 		
 		Query q =  new Query("User_to_FlightSearch")
         	.setFilter(new FilterPredicate(
@@ -107,7 +107,7 @@ public class DALUser_to_FlightSearch {
 	 */
 	public boolean AddUser_to_FlightSearch(User_to_FlightSearch utf) {
 		Key key = datastore.put(utf.toDatastoreEntity());
-		utf.setUtf_id(key.toString());
+		utf.setUtf_id(key);
 		return true;
 	}
 	

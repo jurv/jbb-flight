@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import static com.google.appengine.api.taskqueue.TaskOptions.Builder.*;
@@ -225,12 +226,12 @@ public class UserController extends HttpServlet
 		javax.servlet.http.HttpSession session = req.getSession(true);
 		
 		// Get the user key from the session
-		String usr_id = (String)session.getAttribute("usr_id");
+		Key usr_id = (Key)session.getAttribute("usr_id");
 		
 		// Get the params from the form
 		String passwd1 = req.getParameter("usr_password");
 		String passwd2 = req.getParameter("usr_re_password");
-		if(passwd1.equals(passwd2) && !passwd1.isEmpty() && usr_id!= null && !usr_id.isEmpty()) {
+		if(passwd1.equals(passwd2) && !passwd1.isEmpty() && usr_id!= null && usr_id != null) {
 			// Get the current user
 			User usr = DALUser.getInstance().GetUserById(usr_id);
 			usr.setUsr_password(passwd1);
@@ -243,7 +244,7 @@ public class UserController extends HttpServlet
 			req.setAttribute("error-message", "Error : The two passwords are differents ! ");
 			this.changePasswdUserView(req, resp);
 		}
-		else if( usr_id == null || usr_id.isEmpty() ) {
+		else if( usr_id == null || usr_id != null ) {
 			req.setAttribute("error-message", "Error : There is a problem with your session ! ");
 			this.changePasswdUserView(req, resp);
 		}
