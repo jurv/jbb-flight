@@ -80,7 +80,7 @@ public class UserController extends HttpServlet
 		DALUser dalUser = DALUser.getInstance();
 		User user = dalUser.DoLogin(login, passwd);
 		if ( user != null){
-			session.setAttribute(user.getUsr_login(), user);
+			session.setAttribute(User.USER_ID, user.getUsr_id());
 		}
 	}
 
