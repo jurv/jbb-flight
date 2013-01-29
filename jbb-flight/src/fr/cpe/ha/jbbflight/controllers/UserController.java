@@ -48,23 +48,12 @@ public class UserController extends HttpServlet
 			this.changePasswdUserView(req, resp);
 		}else if ("delete".equals(action)){
 			this.deleteUser(req, resp);
-		}else if ("header".equals(action)){
-			this.viewHeader(req, resp);
 		}else {
 			resp.sendRedirect("/user?action=login");
 			this.loginUserView(req, resp);
 		}
 	}
 
-	private void viewHeader(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/header.jsp");			
-		try {
-			dispatcher.forward(req,resp);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		}
-		
-	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
