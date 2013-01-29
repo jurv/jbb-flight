@@ -152,7 +152,7 @@ public class DALUser {
 	 */
 	public User DoLogin(String login, String passwd)
 	{
-		List<FilterPredicate> filters = null;
+		List<FilterPredicate> filters = new ArrayList<Query.FilterPredicate>();
 		filters.add(new FilterPredicate(User.USER_LOGIN, FilterOperator.EQUAL, login));
 		filters.add(new FilterPredicate(User.USER_PASSWORD, FilterOperator.EQUAL, passwd));
 		
