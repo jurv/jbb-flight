@@ -21,7 +21,6 @@
   Enregistrement d'un utilisateur
         Formulaire d'ajout                                                                         OK
         Envoi de mail de confirmation avec mdp auto                                                OK
-        Délégation de l'ajout d'un utilisateur à une tache sur le serveur                          OK
         Messager d'erreur en cas d'echec                                                           OK
 
   Améliroation du login
@@ -35,7 +34,7 @@
   Console d'administration - Page de gestion des utilisateurs
         Lister les utilisateurs courants et possibilité des les supprimer                          OK
         et de les ajouter                                                                          NOK
-        Mecanisme permettant de differer les requetes d'ajout / suppression                        ?
+        Délégation de l'ajout d'un utilisateur à une tache sur le serveur                          OK
         Afficher la date de la derniere connexion de l'utilisateur                                 NOK
         Afficher la durée de la derniere connexion de l'utilisateur                                NOK
 
@@ -46,16 +45,18 @@
         Délégation de l'ajout d'un vol à une tache sur le serveur                                  NOK (systeme en place)
 
   Recherche d'un vol
-        Header - Nombre d'utilisateur actuellement connectés                                       ?
-        Header - Login de l'utilisateur actuellement connecté                                      ?
-        Header - Lien vers l'historique des requêtes                                               ?
-        Zone de recherche avec formulaire de recherche                                             ?
-        Zone d'affichage des vols  concerné par la recherche                                       ?
+        Zone de recherche avec formulaire de recherche                                             OK
+        Zone d'affichage des vols  concerné par la recherche                                       OK
 
   Historique de navigation
         Enregister toutes les recherches dans le Datastore                                         ?
         Page d'historique affichant la liste des recherches effectuées avec leur date              ?
-        Tache de type CRON permettant de supprimer toutes les recherches > à 2 min                 ?
+        Tache de type CRON permettant de supprimer toutes les recherches > à 2 min                 OK
+
+  Pages
+        Header - Nombre d'utilisateur actuellement connectés                                       ?
+        Header - Login de l'utilisateur actuellement connecté                                      ?
+        Header - Lien vers l'historique des requêtes                                               ?
 
   Resrvation de vol (Optionnel)
         
