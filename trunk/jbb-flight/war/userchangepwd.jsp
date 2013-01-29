@@ -23,7 +23,7 @@
 	</section>
 	<section>
 		<div>
-			<button class="fr submit">Login</button>
+			<button class="fr submit">Save</button>
 		</div>
 	</section>
 	</fieldset>

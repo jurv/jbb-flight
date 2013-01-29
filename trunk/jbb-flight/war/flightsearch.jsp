@@ -1,3 +1,5 @@
+<jsp:include page="header.jsp" />
+
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="fr.cpe.ha.jbbflight.dataaccesslayout.DALFlight"%>
@@ -11,52 +13,80 @@
 %>
 
 <h1> Flight Search </h1>
+<p>
+	Fill fields to search flights.
+</p>
 
 <form method="POST">
-	<label for="fgt_leaving_from_id">Departure city</label>
-	<select id="fgt_leaving_from_id" name="fgt_leaving_from_id">
-		<option value=""></option>
-		<% for(City c : cities) {
-			Long id = c.getCty_id();
-			String name = c.getCty_label();
-		%>
-			<option 
-				value="<%= id %>">
-				<%= name %>
-			</option>
-		<% } %>
-		
-	</select><br/>
+	<fieldset>
+		<section>
+			<label for="fgt_leaving_from_id">Departure city</label>
+			<div>
+				<select id="fgt_leaving_from_id" name="fgt_leaving_from_id">
+				<option value=""></option>
+				<% for(City c : cities) {
+					Long id = c.getCty_id();
+					String name = c.getCty_label();
+				%>
+				<option 
+					value="<%= id %>">
+					<%= name %>
+				</option>
+				<% } %>
+				</select>
+			</div>
+		</section>
+		<section>
+			<label for="fgt_going_to_id">Arrival city</label>
+			<div>
+			<select id="fgt_going_to_id" name="fgt_going_to_id">
+				<option value=""></option>
+				<% for(City c : cities) {
+					Long id = c.getCty_id();
+					String name = c.getCty_label();
+				%>
+					<option 
+						value="<%= id %>">
+						<%= name %>
+					</option>
+				<% } %>
+				
+			</select>
+			</div>
+		</section>
 	
-	<label for="fgt_going_to_id">Arrival city</label>
-	<select id="fgt_going_to_id" name="fgt_going_to_id">
-		<option value=""></option>
-		<% for(City c : cities) {
-			Long id = c.getCty_id();
-			String name = c.getCty_label();
-		%>
-			<option 
-				value="<%= id %>">
-				<%= name %>
-			</option>
-		<% } %>
-		
-	</select><br/>
+		<section>
+			<label for="fgt_date_departure">Departure Date</label>
+			<div>
+				<input id="fgt_date_departure" name="fgt_date_departure" type="text" value=""/> <br/>
+			</div>
+		</section>
 	
-	<label for="fgt_date_departure">Departure Date</label>
-	<input id="fgt_date_departure" name="fgt_date_departure" type="text" value=""/> <br/>
+	<section>
+		<label for="fgt_date_arrival">Arrival Date</label>
+		<div>
+			<input id="fgt_date_arrival" name="fgt_date_arrival" type="text" value=""/> <br/>
+		</div>
+	</section>
 	
-	<label for="fgt_date_arrival">Arrival Date</label>
-	<input id="fgt_date_arrival" name="fgt_date_arrival" type="text" value=""/> <br/>
+	<section>
+		<label for="fgt_max_price">Maximum Price</label>
+		<div>
+			<input id="fgt_max_price" name="fgt_max_price" type="text" value=""/> <br/>
+		</div>
+	</section>
 	
-	<label for="fgt_max_price">Maximum Price</label>
-	<input id="fgt_max_price" name="fgt_max_price" type="text" value=""/> <br/>
-
-	<input type="submit" value="Search" />
+	<section>
+		<div>
+			<button class="fr submit">Search</button>
+		</div>
+	</section>
+	
+	</fieldset>
 </form>
 
 
-<table border="1">
+<table border="1" class='datable'>
 	<tr>
 		<th>Flight number</th>
 		<th>From</th>
@@ -96,3 +126,4 @@
 		}
 	%>
 </table>
+<jsp:include page="footer.jsp" />
