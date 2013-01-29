@@ -73,7 +73,15 @@ public class UserController extends HttpServlet
 	
 	private void loginUserAction(HttpServletRequest req, HttpServletResponse resp) {
 		
+		String passwd = req.getParameter(User.USER_PASSWORD);
+		String login = req.getParameter(User.USER_LOGIN);
+		javax.servlet.http.HttpSession session = req.getSession();
 		
+		DALUser dalUser = DALUser.getInstance();
+		User user = dalUser.DoLogin(login, passwd);
+		if ( user != null){
+			session.setAttribute(user.getUsr_login(), user);
+		}
 	}
 
 	/**

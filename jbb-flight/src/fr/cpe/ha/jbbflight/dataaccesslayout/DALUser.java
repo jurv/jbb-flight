@@ -144,4 +144,23 @@ public class DALUser {
 		
 		return true;
 	}
+	
+	/**
+	 * Function to connect the user if password OK
+	 * @param login
+	 * @return
+	 */
+	public User DoLogin(String login, String passwd)
+	{
+		List<FilterPredicate> filters = null;
+		filters.add(new FilterPredicate(User.USER_LOGIN, FilterOperator.EQUAL, login));
+		filters.add(new FilterPredicate(User.USER_PASSWORD, FilterOperator.EQUAL, passwd));
+		
+		List <User>users = this.GetAllUsers(filters);
+		
+		if (users!=null && users.size() > 0){
+			return users.get(0);
+		}
+		return null;
+	}
 }
