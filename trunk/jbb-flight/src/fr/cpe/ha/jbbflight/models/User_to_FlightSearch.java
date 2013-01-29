@@ -55,6 +55,10 @@ public class User_to_FlightSearch {
 	 */
 	private int utf_responses_count;
 
+	public User_to_FlightSearch() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	/**
 	 * Construct a User_to_FlightSearch object from a datastore entity User_to_FlightSearch
 	 */

@@ -70,6 +70,9 @@ public class Flight {
 	private boolean fgt_is_deleted;
 
 	
+	public Flight() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * Construct a Flight object from a datastore entity flight
 	 */
