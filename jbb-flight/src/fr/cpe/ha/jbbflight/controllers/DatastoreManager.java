@@ -19,17 +19,18 @@ import fr.cpe.ha.jbbflight.models.Flight;
 import fr.cpe.ha.jbbflight.models.User;
 import fr.cpe.ha.jbbflight.models.User_to_FlightSearch;
 
-public class DataInsertion {
+public class DatastoreManager {
 
-	private DatastoreService datastore;
-	private SimpleDateFormat sdf;
+	private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	private static SimpleDateFormat sdf       = new SimpleDateFormat("dd/MM/yyyy");;
 	
-	public DataInsertion() {
-		datastore = DatastoreServiceFactory.getDatastoreService();
-		sdf = new SimpleDateFormat("dd/MM/yyyy");
+	public static void recreate() throws ParseException
+	{
+		clear();
+		insert();
 	}
 	
-	public void clear()
+	public static void clear()
 	{
 		Query mydeleteq = new Query();
 		PreparedQuery pq = datastore.prepare(mydeleteq);
@@ -38,7 +39,7 @@ public class DataInsertion {
 		}
 	}
 	
-	public void insert() throws ParseException
+	public static void insert() throws ParseException
 	{
 		DALCity dalCity                = DALCity.getInstance();
 		DALUser dalUser                = DALUser.getInstance();

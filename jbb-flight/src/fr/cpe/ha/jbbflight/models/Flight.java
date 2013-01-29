@@ -52,17 +52,17 @@ public class Flight {
 	/**
 	 * Price for a seat in the plane
 	 */
-	private float fgt_price;
+	private double fgt_price;
 	
 	/**
 	 * Number of seats in the plane
 	 */
-	private int fgt_total_seats;
+	private long fgt_total_seats;
 	
 	/**
 	 * Number of seats already reserved on the plane
 	 */
-	private int fgt_reserved_seats;
+	private long fgt_reserved_seats;
 	
 	/**
 	 * Has this flight been deleted
@@ -82,9 +82,9 @@ public class Flight {
 		this.fgt_date_departure  = (Date)fgt.getProperty(FLIGHT_DATE_DEPARTURE);
 		this.fgt_going_to_id     = (String)fgt.getProperty(FLIGHT_GOING_TO_ID);
 		this.fgt_leaving_from_id = (String)fgt.getProperty(FLIGHT_LEAVING_FROM_ID);
-		this.fgt_price           = (Float)fgt.getProperty(FLIGHT_PRICE);
-		this.fgt_reserved_seats  = (Integer)fgt.getProperty(FLIGHT_RESERVED_SEATS);
-		this.fgt_total_seats     = (Integer)fgt.getProperty(FLIGHT_TOTAL_SEATS);
+		this.fgt_price           = (Double)fgt.getProperty(FLIGHT_PRICE);
+		this.fgt_reserved_seats  = (Long)fgt.getProperty(FLIGHT_RESERVED_SEATS);
+		this.fgt_total_seats     = (Long)fgt.getProperty(FLIGHT_TOTAL_SEATS);
 		this.fgt_is_deleted      = (Boolean)fgt.getProperty(FLIGHT_IS_DELETED);
 	}
 	
@@ -96,7 +96,6 @@ public class Flight {
 		
 		Entity flight = new Entity(FLIGHT);
 		
-		flight.setProperty(FLIGHT_ID, Flight.FLIGHT_ID);
 		flight.setProperty(FLIGHT_DATE_ARRIVAL, this.fgt_date_arrival);
 		flight.setProperty(FLIGHT_DATE_DEPARTURE, this.fgt_date_departure);
 		flight.setProperty(FLIGHT_LEAVING_FROM_ID, this.fgt_leaving_from_id);
@@ -182,7 +181,7 @@ public class Flight {
 	/**
 	 * @return the fgt_price
 	 */
-	public float getFgt_price() {
+	public double getFgt_price() {
 		return fgt_price;
 	}
 
@@ -196,28 +195,28 @@ public class Flight {
 	/**
 	 * @return the fgt_total_seats
 	 */
-	public int getFgt_total_seats() {
+	public long getFgt_total_seats() {
 		return fgt_total_seats;
 	}
 
 	/**
 	 * @param fgt_total_seats the fgt_total_seats to set
 	 */
-	public void setFgt_total_seats(int fgt_total_seats) {
+	public void setFgt_total_seats(long fgt_total_seats) {
 		this.fgt_total_seats = fgt_total_seats;
 	}
 
 	/**
 	 * @return the fgt_reserved_seats
 	 */
-	public int getFgt_reserved_seats() {
+	public long getFgt_reserved_seats() {
 		return fgt_reserved_seats;
 	}
 
 	/**
 	 * @param fgt_reserved_seats the fgt_reserved_seats to set
 	 */
-	public void setFgt_reserved_seats(int fgt_reserved_seats) {
+	public void setFgt_reserved_seats(long fgt_reserved_seats) {
 		this.fgt_reserved_seats = fgt_reserved_seats;
 	}
 
