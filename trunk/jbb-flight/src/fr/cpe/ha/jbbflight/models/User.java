@@ -16,7 +16,7 @@ public class User {
 	public final static String USER_ID = "usr_id";
 	public final static String USER_FIRSTNAME = "usr_firstname";
 	public final static String USER_LASTNAME = "usr_lastname";
-	public final static String USER_BIRTHDATE = "usr_bithdate";
+	public final static String USER_BIRTHDATE = "usr_birthdate";
 	public final static String USER_EMAIL = "usr_email";
 	public final static String USER_LOGIN = "usr_login";
 	public final static String USER_PASSWORD = "usr_password";

@@ -1,0 +1,23 @@
+<queue-entries>
+<!--Change the refresh rate of the default queue to 1/s-->
+  <queue>
+    <name>default</name>
+    <rate>1/s</rate>
+  </queue>
+  <queue>
+    <name>addUser</name>
+    <rate>1/s</rate>
+  </queue>
+  <queue>
+    <name>addFlight</name>
+    <rate>1/s</rate>
+  </queue>
+  <queue>
+    <name>updateUser</name>
+    <rate>1/s</rate>
+  </queue>
+  <queue>
+    <name>updateFlight</name>
+    <rate>1/s</rate>
+  </queue>
+</queue-entries>
