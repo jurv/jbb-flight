@@ -47,8 +47,8 @@ public class User_to_Connection {
 	 */
 	public User_to_Connection(Entity utc) {
 		this.utc_id 		= utc.getKey().getId();
-		this.utc_date 		= (Date)utc.getProperty(USER_TO_CONNECTION_DATE);
-		this.usr_id     	= Long.parseLong((String)utc.getProperty(User.USER_ID));
+		this.utc_date 		= (Date)   utc.getProperty(USER_TO_CONNECTION_DATE);
+		this.usr_id     	= (Long)   utc.getProperty(User.USER_ID);
 		this.utc_is_deleted = (Boolean)utc.getProperty(USER_TO_CONNECTION_IS_DELETED);
 	}
 	

@@ -79,14 +79,14 @@ public class Flight {
 	 * Construct a Flight object from a datastore entity flight
 	 */
 	public Flight(Entity fgt) {
-		this.fgt_id              = (long)fgt.getKey().getId();
-		this.fgt_date_arrival    = (Date)fgt.getProperty(FLIGHT_DATE_ARRIVAL);
-		this.fgt_date_departure  = (Date)fgt.getProperty(FLIGHT_DATE_DEPARTURE);
-		this.fgt_going_to_id     = Long.parseLong((String) fgt.getProperty(FLIGHT_GOING_TO_ID));
-		this.fgt_leaving_from_id = Long.parseLong((String) fgt.getProperty(FLIGHT_LEAVING_FROM_ID));
-		this.fgt_price           = (Double)fgt.getProperty(FLIGHT_PRICE);
-		this.fgt_reserved_seats  = (Long)fgt.getProperty(FLIGHT_RESERVED_SEATS);
-		this.fgt_total_seats     = (Long)fgt.getProperty(FLIGHT_TOTAL_SEATS);
+		this.fgt_id              = (long)   fgt.getKey().getId();
+		this.fgt_date_arrival    = (Date)   fgt.getProperty(FLIGHT_DATE_ARRIVAL);
+		this.fgt_date_departure  = (Date)   fgt.getProperty(FLIGHT_DATE_DEPARTURE);
+		this.fgt_going_to_id     = (Long)   fgt.getProperty(FLIGHT_GOING_TO_ID);
+		this.fgt_leaving_from_id = (Long)   fgt.getProperty(FLIGHT_LEAVING_FROM_ID);
+		this.fgt_price           = (Double) fgt.getProperty(FLIGHT_PRICE);
+		this.fgt_reserved_seats  = (Long)   fgt.getProperty(FLIGHT_RESERVED_SEATS);
+		this.fgt_total_seats     = (Long)   fgt.getProperty(FLIGHT_TOTAL_SEATS);
 		this.fgt_is_deleted      = (Boolean)fgt.getProperty(FLIGHT_IS_DELETED);
 	}
 	

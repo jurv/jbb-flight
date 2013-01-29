@@ -94,18 +94,18 @@ public class User {
 	 * @param usr
 	 */
 	public User(Entity usr) {
-		this.usr_birthdate 				= (Date)usr.getProperty(USER_BIRTHDATE);
-		this.usr_date_creation 			= (Date)usr.getProperty(USER_DATE_CREATION);
-		this.usr_date_delete 			= (Date)usr.getProperty(USER_DATE_DELETE);
-		this.usr_email 					= (String)usr.getProperty(USER_EMAIL);
-		this.usr_firstname 				= (String)usr.getProperty(USER_FIRSTNAME);
-		this.usr_lastname 				= (String)usr.getProperty(USER_LASTNAME);
 		this.usr_id 					= usr.getKey().getId();
+		this.usr_birthdate 				= (Date)   usr.getProperty(USER_BIRTHDATE);
+		this.usr_date_creation 			= (Date)   usr.getProperty(USER_DATE_CREATION);
+		this.usr_date_delete 			= (Date)   usr.getProperty(USER_DATE_DELETE);
+		this.usr_email 					= (String) usr.getProperty(USER_EMAIL);
+		this.usr_firstname 				= (String) usr.getProperty(USER_FIRSTNAME);
+		this.usr_lastname 				= (String) usr.getProperty(USER_LASTNAME);
 		this.usr_is_admin 				= (Boolean)usr.getProperty(USER_IS_ADMIN);
 		this.usr_is_deleted 			= (Boolean)usr.getProperty(USER_IS_DELETED);
 		this.usr_is_password_confirmed 	= (Boolean)usr.getProperty(USER_IS_PASSWORD_CONFIRMED);
-		this.usr_login 					= (String)usr.getProperty(USER_LOGIN);
-		this.usr_password 				= (String)usr.getProperty(USER_PASSWORD);
+		this.usr_login 					= (String) usr.getProperty(USER_LOGIN);
+		this.usr_password 				= (String) usr.getProperty(USER_PASSWORD);
 	}
 	
 	/**

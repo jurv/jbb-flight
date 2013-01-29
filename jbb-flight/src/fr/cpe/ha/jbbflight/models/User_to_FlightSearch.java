@@ -64,12 +64,12 @@ public class User_to_FlightSearch {
 	 * Construct a User_to_FlightSearch object from a datastore entity User_to_FlightSearch
 	 */
 	public User_to_FlightSearch(Entity utf) {
-		this.utf_date            = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE);
-		this.utf_date_departure  = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE_DEPARTURE);
-		this.utf_going_to        = Long.parseLong((String)utf.getProperty(USER_TO_FLIGHTSEARCH_GOING_TO));
 		this.utf_id              = utf.getKey().getId();
+		this.utf_date            = (Date)   utf.getProperty(USER_TO_FLIGHTSEARCH_DATE);
+		this.utf_date_departure  = (Date)   utf.getProperty(USER_TO_FLIGHTSEARCH_DATE_DEPARTURE);
+		this.utf_going_to        = (Long)   utf.getProperty(USER_TO_FLIGHTSEARCH_GOING_TO);
 		this.utf_is_deleted      = (Boolean)utf.getProperty(USER_TO_FLIGHTSEARCH_IS_DELETED);
-		this.utf_leaving_from    = Long.parseLong((String)utf.getProperty(USER_TO_FLIGHTSEARCH_LEAVING_FROM));
+		this.utf_leaving_from    = (Long)   utf.getProperty(USER_TO_FLIGHTSEARCH_LEAVING_FROM);
 		this.utf_responses_count = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_RESPONSES_COUNT);
 	}
 	
