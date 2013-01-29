@@ -28,7 +28,7 @@ public class User_to_Connection {
 	/**
 	 * User's identifier
 	 */
-	int usr_id;
+	String usr_id;
 	
 	/**
 	 * True if the User's login session trace is deleted
@@ -45,7 +45,7 @@ public class User_to_Connection {
 	 * @param utc
 	 */
 	public User_to_Connection(Entity utc) {
-		this.usr_id 		= (Integer)utc.getProperty(User.USER_ID);
+		this.usr_id 		= (String)utc.getProperty(User.USER_ID);
 		this.utc_date 		= (Date)utc.getProperty(USER_TO_CONNECTION_DATE);
 		this.utc_id     	= (String)utc.getProperty(USER_TO_CONNECTION_ID);
 		this.utc_is_deleted = (Boolean)utc.getProperty(USER_TO_CONNECTION_IS_DELETED);
@@ -82,14 +82,14 @@ public class User_to_Connection {
 	/**
 	 * @return the usr_id
 	 */
-	public int getUsr_id() {
+	public String getUsr_id() {
 		return usr_id;
 	}
 
 	/**
 	 * @param usr_id the usr_id to set
 	 */
-	public void setUsr_id(int usr_id) {
+	public void setUsr_id(String usr_id) {
 		this.usr_id = usr_id;
 	}
 

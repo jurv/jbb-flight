@@ -32,12 +32,12 @@ public class Flight {
 	/**
 	 * City from where the plane will leave
 	 */
-	private int fgt_leaving_from_id;
+	private String fgt_leaving_from_id;
 	
 	/**
 	 * City where the plain is flying to
 	 */
-	private int fgt_going_to_id;
+	private String fgt_going_to_id;
 	
 	/**
 	 * Departure date of the flight
@@ -77,8 +77,8 @@ public class Flight {
 		this.fgt_id              = (String)fgt.getProperty(FLIGHT_ID);
 		this.fgt_date_arrival    = (Date)fgt.getProperty(FLIGHT_DATE_ARRIVAL);
 		this.fgt_date_departure  = (Date)fgt.getProperty(FLIGHT_DATE_DEPARTURE);
-		this.fgt_going_to_id     = (Integer)fgt.getProperty(FLIGHT_GOING_TO_ID);
-		this.fgt_leaving_from_id = (Integer)fgt.getProperty(FLIGHT_LEAVING_FROM_ID);
+		this.fgt_going_to_id     = (String)fgt.getProperty(FLIGHT_GOING_TO_ID);
+		this.fgt_leaving_from_id = (String)fgt.getProperty(FLIGHT_LEAVING_FROM_ID);
 		this.fgt_price           = (Float)fgt.getProperty(FLIGHT_PRICE);
 		this.fgt_reserved_seats  = (Integer)fgt.getProperty(FLIGHT_RESERVED_SEATS);
 		this.fgt_total_seats     = (Integer)fgt.getProperty(FLIGHT_TOTAL_SEATS);
@@ -123,28 +123,28 @@ public class Flight {
 	/**
 	 * @return the fgt_leaving_from_id
 	 */
-	public int getFgt_leaving_from_id() {
+	public String getFgt_leaving_from_id() {
 		return fgt_leaving_from_id;
 	}
 
 	/**
 	 * @param fgt_leaving_from_id the fgt_leaving_from_id to set
 	 */
-	public void setFgt_leaving_from_id(int fgt_leaving_from_id) {
+	public void setFgt_leaving_from_id(String fgt_leaving_from_id) {
 		this.fgt_leaving_from_id = fgt_leaving_from_id;
 	}
 
 	/**
 	 * @return the fgt_going_to_id
 	 */
-	public int getFgt_going_to_id() {
+	public String getFgt_going_to_id() {
 		return fgt_going_to_id;
 	}
 
 	/**
 	 * @param fgt_going_to_id the fgt_going_to_id to set
 	 */
-	public void setFgt_going_to_id(int fgt_going_to_id) {
+	public void setFgt_going_to_id(String fgt_going_to_id) {
 		this.fgt_going_to_id = fgt_going_to_id;
 	}
 

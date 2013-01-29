@@ -33,12 +33,12 @@ public class User_to_FlightSearch {
 	/**
 	 * City from where the plane will leave
 	 */
-	private int utf_leaving_from;
+	private String utf_leaving_from;
 	
 	/**
 	 * City where the plain is flying to
 	 */
-	private int utf_going_to;
+	private String utf_going_to;
 	
 	/**
 	 * Departure date of the flight
@@ -61,10 +61,10 @@ public class User_to_FlightSearch {
 	public User_to_FlightSearch(Entity utf) {
 		this.utf_date            = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE);
 		this.utf_date_departure  = (Date)utf.getProperty(USER_TO_FLIGHTSEARCH_DATE_DEPARTURE);
-		this.utf_going_to        = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_GOING_TO);
+		this.utf_going_to        = (String)utf.getProperty(USER_TO_FLIGHTSEARCH_GOING_TO);
 		this.utf_id              = (String)utf.getProperty(USER_TO_FLIGHTSEARCH_ID);
 		this.utf_is_deleted      = (Boolean)utf.getProperty(USER_TO_FLIGHTSEARCH_IS_DELETED);
-		this.utf_leaving_from    = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_LEAVING_FROM);
+		this.utf_leaving_from    = (String)utf.getProperty(USER_TO_FLIGHTSEARCH_LEAVING_FROM);
 		this.utf_responses_count = (Integer)utf.getProperty(USER_TO_FLIGHTSEARCH_RESPONSES_COUNT);
 	}
 	
@@ -118,28 +118,28 @@ public class User_to_FlightSearch {
 	/**
 	 * @return the utf_leaving_from
 	 */
-	public int getUtf_leaving_from() {
+	public String getUtf_leaving_from() {
 		return utf_leaving_from;
 	}
 
 	/**
 	 * @param utf_leaving_from the utf_leaving_from to set
 	 */
-	public void setUtf_leaving_from(int utf_leaving_from) {
+	public void setUtf_leaving_from(String utf_leaving_from) {
 		this.utf_leaving_from = utf_leaving_from;
 	}
 
 	/**
 	 * @return the utf_going_to
 	 */
-	public int getUtf_going_to() {
+	public String getUtf_going_to() {
 		return utf_going_to;
 	}
 
 	/**
 	 * @param utf_going_to the utf_going_to to set
 	 */
-	public void setUtf_going_to(int utf_going_to) {
+	public void setUtf_going_to(String utf_going_to) {
 		this.utf_going_to = utf_going_to;
 	}
 

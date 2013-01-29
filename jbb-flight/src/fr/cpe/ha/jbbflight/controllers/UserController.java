@@ -149,7 +149,6 @@ public class UserController extends HttpServlet {
 	 */
 	private void editUserAction(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	/**
