@@ -46,7 +46,7 @@
 	<label for="fgt_date_departure">Departure Date</label>
 	<input id="fgt_date_departure" name="fgt_date_departure" type="text" value=""/> <br/>
 	
-	<label for="fgt_date_arrival">Return Date</label>
+	<label for="fgt_date_arrival">Arrival Date</label>
 	<input id="fgt_date_arrival" name="fgt_date_arrival" type="text" value=""/> <br/>
 	
 	<label for="fgt_max_price">Maximum Price</label>

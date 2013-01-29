@@ -37,20 +37,10 @@
 			</div>
 		</section>
 		<section>
-			<label for="usr_password">Password *</label>
-			<div>
-				<input id="usr_password" name="usr_password" type="password" value="" required /> <br/>
-			</div>
-		</section>
-		<section>
-			<label for="usr_re_password">Re Password *</label>
-			<div>
-				<input id="usr_re_password" name="usr_re_password" type="password" value="" required /> <br/>
-			</div>
-		</section>
-		<section>
 			<button class="fr submit">Register</button>
 		</section>
+		<input id="usr_password" name="usr_password" type="hidden" value=""/>
+        	<input id="usr_re_password" name="usr_re_password" type="hidden" value=""/>
 	</fieldset>
 </form>
 
