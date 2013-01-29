@@ -139,4 +139,15 @@ public class DALUser_to_FlightSearch {
 		return true;
 	}
 	
+	/**
+	 * Real remove the user_to_FlightSearch in the datastore
+	 * 
+	 * @param utf
+	 * @return
+	 */
+	public boolean RealRemoveUser_to_FlightSearch(User_to_FlightSearch utf) {
+		
+		datastore.delete(KeyFactory.createKey("User_to_FlightSearch",utf.getUtf_id()));
+		return true;
+	}
 }

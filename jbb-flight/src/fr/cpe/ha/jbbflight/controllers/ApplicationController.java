@@ -54,7 +54,7 @@ public class ApplicationController extends HttpServlet{
 		if(usr_id != null && usr_id != null)
 			usr = DALUser.getInstance().GetUserById(usr_id);
 		
-		if(usr_id != null && usr_id != null && usr != null && usr.getUsr_is_password_confirmed() == true) {
+		if(usr_id != null && usr_id != null && usr != null && usr.getUsr_is_password_confirmed() == true && usr.isUsr_is_admin()) {
 			// That's not the first connection
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/dashboard.jsp");			
 			try {
@@ -63,11 +63,19 @@ public class ApplicationController extends HttpServlet{
 				e.printStackTrace();
 			}
 		} 
-		else {
+		else if(usr.getUsr_is_password_confirmed() == false) {
 			// It's the first connection, user has to change his password
 			newpwdView(req, resp);
 		}
-			
+		else if(usr.isUsr_is_admin() == false) {
+			// That's not the first connection
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/noadminuser.jsp");			
+			try {
+				dispatcher.forward(req,resp);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/**
