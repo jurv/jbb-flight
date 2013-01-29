@@ -1,4 +1,5 @@
-<!-- View page 7 -->
+<jsp:include page="header.jsp" />
+
 <%@page import="fr.cpe.ha.jbbflight.controllers.DatastoreManager"%>
 <%@page import="java.util.List"%>
 <%@page import="fr.cpe.ha.jbbflight.dataaccesslayout.DALUser"%>
@@ -8,14 +9,16 @@
 	//DatastoreManager.insert();
 	List<User> users = DALUser.getInstance().GetAllUsers();
 %>
-<h1>Liste des utilisateurs</h1>
-
-<table id="userList" name="userList" >
+<h1>User list</h1>
+<p>
+	Get the users list.
+</p>
+<table id="userList" name="userList" class='datatable'>
 	  <tr>
-	    <th>Prenom</th>
-	    <th>Nom</th>
+	    <th>Firstname</th>
+	    <th>Lastname</th>
 	    <th>Email</th>
-	    <th>Supprimer</th>
+	    <th>Delete</th>
 	  </tr>
 	<% 
 		if (users != null && users.size() > 0){
@@ -30,3 +33,4 @@
 	%>
 </table>
 
+<jsp:include page="footer.jsp" />
