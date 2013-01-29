@@ -85,7 +85,7 @@ public class DALUser_to_FlightSearch {
 	 * @param id User_to_FlightSearch's Unique identifier
 	 * @return
 	 */
-	public User_to_FlightSearch GetUser_to_FlightSearchById(int id) {
+	public User_to_FlightSearch GetUser_to_FlightSearchById(String id) {
 		
 		Query q =  new Query("User_to_FlightSearch")
         	.setFilter(new FilterPredicate(

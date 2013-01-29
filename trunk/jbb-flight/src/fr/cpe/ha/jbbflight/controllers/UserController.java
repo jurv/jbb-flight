@@ -105,8 +105,8 @@ public class UserController extends HttpServlet {
 		DALUser dalUser = DALUser.getInstance();
 		dalUser.AddUser(usr);
 		
-		// Redirect to the list view
-		this.listUserView(req, resp);
+		// Redirect to the login form
+		this.loginUserView(req, resp);
 	}
 	
 	/**
@@ -189,6 +189,27 @@ public class UserController extends HttpServlet {
 	 * @param resp
 	 */
 	private void changePasswdUserAction(HttpServletRequest req, HttpServletResponse resp) {
+		
+		javax.servlet.http.HttpSession session = req.getSession();
+		
+		// Get the user key from the session
+		String usr_id = (String)session.getAttribute("usr_id");
+		
+		// Get the params from the form
+		String passwd1 = req.getParameter("usr_password");
+		String passwd2 = req.getParameter("usr_re_password");
+		if(passwd1.equals(passwd2) && !passwd1.isEmpty() && !usr_id.isEmpty()) {
+			// Get the current user
+			User usr = DALUser.getInstance().GetUserById(usr_id);
+			usr.setUsr_password(passwd1);
+			usr.setUsr_is_password_confirmed(true);
+		}
+		else if( usr_id.isEmpty() ) {
+			req.setAttribute("error-message", "Error : There is a problem with your session ! ");
+		}
+		else {
+			req.setAttribute("error-message", "The two passwords are differents !");
+		}
 		
 	}
 	

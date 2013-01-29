@@ -94,7 +94,7 @@ public class DALFlight {
 	 * @param id Flight's Unique identifier
 	 * @return
 	 */
-	public Flight GetFlightById(int id) {
+	public Flight GetFlightById(String id) {
 		
 		Query q =  new Query("Flight")
         	.setFilter(new FilterPredicate(

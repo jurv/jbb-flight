@@ -91,7 +91,7 @@ public class DALUser_to_Connection {
 	 * @param id User_to_Connection's Unique identifier
 	 * @return
 	 */
-	public User_to_Connection GetUser_to_ConnectionById(int id) {
+	public User_to_Connection GetUser_to_ConnectionById(String id) {
 		
 		Query q =  new Query("User_to_Connection")
         	.setFilter(new FilterPredicate(
