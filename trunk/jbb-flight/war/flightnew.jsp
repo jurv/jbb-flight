@@ -1,9 +1,9 @@
-<%@page import="fr.cpe.ha.jbbflight.controllers.DataInsertion"%>
+<%@page import="fr.cpe.ha.jbbflight.controllers.DatastoreManager"%>
 <%@page import="java.util.List"%>
 <%@page import="fr.cpe.ha.jbbflight.dataaccesslayout.DALCity"%>
 <%@page import="fr.cpe.ha.jbbflight.models.City"%>
 <%
-	DataInsertion di = new DataInsertion();
+	DatastoreManager di = new DatastoreManager();
 	di.clear();
 	di.insert();
 
