@@ -125,9 +125,12 @@ public class DALCity {
 	 * @param usr
 	 * @return
 	 */
-	public boolean UpdateCity(City usr) {
+	public City UpdateCity(City cty) {
 		
-		return AddCity(usr);
+		datastore.delete(cty.getCty_id());
+		Key key = datastore.put(cty.toDatastoreEntity());
+		cty.setCty_id(key);
+		return cty;
 	}
 	
 	/**

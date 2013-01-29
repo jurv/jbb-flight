@@ -126,8 +126,12 @@ public class DALFlight {
 	 * @param fgt
 	 * @return
 	 */
-	public boolean UpdateFlight(Flight fgt) {
-		return AddFlight(fgt);
+	public Flight UpdateFlight(Flight fgt) {
+		
+		datastore.delete(fgt.getFgt_id());
+		Key key = datastore.put(fgt.toDatastoreEntity());
+		fgt.setFgt_id(key);
+		return fgt;
 	}
 	
 	/**
