@@ -30,7 +30,12 @@ public class FlightSearchCronController extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
 		// Default, there is only one method in this servlet, 
-		cleanOldValues();
+		try {
+			cleanOldValues();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
