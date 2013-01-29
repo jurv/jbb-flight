@@ -197,7 +197,7 @@ public class UserController extends HttpServlet
 	 */
 	private void changePasswdUserAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
-		javax.servlet.http.HttpSession session = req.getSession();
+		javax.servlet.http.HttpSession session = req.getSession(true);
 		
 		// Get the user key from the session
 		String usr_id = (String)session.getAttribute("usr_id");
@@ -205,7 +205,7 @@ public class UserController extends HttpServlet
 		// Get the params from the form
 		String passwd1 = req.getParameter("usr_password");
 		String passwd2 = req.getParameter("usr_re_password");
-		if(passwd1.equals(passwd2) && !passwd1.isEmpty() && !usr_id.isEmpty()) {
+		if(passwd1.equals(passwd2) && !passwd1.isEmpty() && usr_id!= null && !usr_id.isEmpty()) {
 			// Get the current user
 			User usr = DALUser.getInstance().GetUserById(usr_id);
 			usr.setUsr_password(passwd1);
@@ -214,7 +214,7 @@ public class UserController extends HttpServlet
 			this.viewUserView(req, resp);
 		}
 		else if(!passwd1.equals(passwd2)) {
-			req.setAttribute("error-message", "Error : There is a problem with your session ! ");
+			req.setAttribute("error-message", "Error : The two passwords are differents ! ");
 			this.changePasswdUserView(req, resp);
 		}
 		else if( usr_id == null || usr_id.isEmpty() ) {
@@ -222,7 +222,7 @@ public class UserController extends HttpServlet
 			this.changePasswdUserView(req, resp);
 		}
 		else {
-			req.setAttribute("error-message", "The two passwords are differents !");
+			req.setAttribute("error-message", "Unknown error !");
 			this.changePasswdUserView(req, resp);
 		}
 	}
