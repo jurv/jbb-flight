@@ -1,6 +1,11 @@
 package fr.cpe.ha.jbbflight.controllers;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -8,6 +13,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+
+import utils.Utils;
 
 import fr.cpe.ha.jbbflight.dataaccesslayout.DALFlight;
 import fr.cpe.ha.jbbflight.models.Flight;
@@ -31,6 +41,22 @@ public class FlightController extends HttpServlet {
 			this.editFlight(req, resp);
 		}else if("list".equals(action)){
 			this.listFlight(req, resp);
+		}else if("search".equals(action)){
+			this.searchFlight(req, resp);
+		}
+	}
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html");
+		
+		String action = req.getParameter("action");
+		
+		if("new".equals(action)){
+			this.newFlight(req, resp);
+		}else if("edit".equals(action)){
+			this.editFlight(req, resp);
+		}else if("search".equals(action)){
+			this.searchFlight(req, resp);
 		}
 	}
 	
@@ -45,6 +71,54 @@ public class FlightController extends HttpServlet {
 	
 	public void viewFlight(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/flightview.jsp");			
+		try {
+			dispatcher.forward(req,resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void searchFlight(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/flightsearch.jsp");			
+		
+		List<String> params = Collections.list(req.getParameterNames());
+		HashMap<String, String> paramsAndValues = new HashMap<String, String>();
+		
+		if(params.contains("fgt_date_departure")){
+			List<FilterPredicate> filters = new ArrayList<FilterPredicate>();
+			FilterPredicate filter;
+			
+			for(String param : params){
+				String value = req.getParameter(param);
+				filter = null;
+				
+				if(param.equals("fgt_date_arrival")){
+					Date d = Utils.getDateFromString(value, "dd/mm/YYYY");
+					filter = new FilterPredicate("fgt_date_arrival", FilterOperator.EQUAL, d);
+				}else if(param.equals("fgt_max_price")){
+					int p = Integer.parseInt(value);
+					filter = new FilterPredicate("fgt_max_price", FilterOperator.LESS_THAN_OR_EQUAL, p);
+				}else if(param.equals("fgt_going_to_id")){
+					int id = Integer.parseInt(value);
+					filter = new FilterPredicate("fgt_going_to_id", FilterOperator.EQUAL, id);
+				}else if(param.equals("fgt_leaving_from_id")){
+					int id = Integer.parseInt(value);
+					filter = new FilterPredicate("fgt_leaving_from_id", FilterOperator.EQUAL, id);
+				}else if(param.equals("fgt_date_departure")){
+					Date d = Utils.getDateFromString(value, "dd/mm/YYYY");
+					filter = new FilterPredicate("fgt_date_departure", FilterOperator.EQUAL, d);
+				}
+				
+				if(filter != null)
+					filters.add(filter);
+			}
+			
+			DALFlight dalFlight = DALFlight.getInstance();
+			dalFlight.GetFlightWithParams(filters);
+		}else{
+			req.setAttribute("search", "Pas de recherche");
+		}
+		
 		try {
 			dispatcher.forward(req,resp);
 		} catch (ServletException e) {
