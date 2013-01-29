@@ -88,35 +88,48 @@ public class FlightController extends HttpServlet {
 			List<FilterPredicate> filters = new ArrayList<FilterPredicate>();
 			FilterPredicate filter;
 			
-			for(String param : params){
+			for(String param : params)
+			{
 				String value = req.getParameter(param);
 				filter = null;
-				
-				if(param.equals("fgt_date_arrival")){
-					Date d = Utils.getDateFromString(value, "dd/mm/YYYY");
-					filter = new FilterPredicate("fgt_date_arrival", FilterOperator.EQUAL, d);
-				}else if(param.equals("fgt_max_price")){
-					int p = Integer.parseInt(value);
-					filter = new FilterPredicate("fgt_max_price", FilterOperator.LESS_THAN_OR_EQUAL, p);
-				}else if(param.equals("fgt_going_to_id")){
-					int id = Integer.parseInt(value);
-					filter = new FilterPredicate("fgt_going_to_id", FilterOperator.EQUAL, id);
-				}else if(param.equals("fgt_leaving_from_id")){
-					int id = Integer.parseInt(value);
-					filter = new FilterPredicate("fgt_leaving_from_id", FilterOperator.EQUAL, id);
-				}else if(param.equals("fgt_date_departure")){
-					Date d = Utils.getDateFromString(value, "dd/mm/YYYY");
-					filter = new FilterPredicate("fgt_date_departure", FilterOperator.EQUAL, d);
+
+				if(value != null && value != "")
+				{
+					if(param.equals("fgt_date_arrival"))
+					{
+						Date d = Utils.getDateFromString(value, "dd/mm/YYYY");
+						filter = new FilterPredicate("fgt_date_arrival", FilterOperator.GREATER_THAN_OR_EQUAL, d);
+					}
+					else if(param.equals("fgt_max_price"))
+					{
+						double p = Double.parseDouble(value);
+						filter = new FilterPredicate("fgt_price", FilterOperator.LESS_THAN_OR_EQUAL, p);
+					}
+					else if(param.equals("fgt_going_to_id"))
+					{
+						int id = Integer.parseInt(value);
+						filter = new FilterPredicate("fgt_going_to_id", FilterOperator.EQUAL, id);
+					}
+					else if(param.equals("fgt_leaving_from_id"))
+					{
+						int id = Integer.parseInt(value);
+						filter = new FilterPredicate("fgt_leaving_from_id", FilterOperator.EQUAL, id);
+					}
+					else if(param.equals("fgt_date_departure"))
+					{
+						Date d = Utils.getDateFromString(value, "dd/mm/YYYY");
+						filter = new FilterPredicate("fgt_date_departure", FilterOperator.GREATER_THAN_OR_EQUAL, d);
+					}
+
+					if(filter != null)
+						filters.add(filter);
 				}
-				
-				if(filter != null)
-					filters.add(filter);
 			}
 			
 			DALFlight dalFlight = DALFlight.getInstance();
-			dalFlight.GetFlightWithParams(filters);
-		}else{
-			req.setAttribute("search", "Pas de recherche");
+			List<Flight> flights = dalFlight.GetFlightWithParams(filters);
+			
+			req.setAttribute("flights", flights);
 		}
 		
 		try {
