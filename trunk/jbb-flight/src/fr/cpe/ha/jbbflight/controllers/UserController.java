@@ -77,8 +77,8 @@ public class UserController extends HttpServlet
 	
 	private void loginUserAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
-		String passwd = (String)req.getParameter(User.USER_PASSWORD);
-		String login = (String)req.getParameter(User.USER_LOGIN);
+		String login = req.getParameter("usr_login");
+		String passwd = req.getParameter("usr_password");
 		javax.servlet.http.HttpSession session = req.getSession();
 		
 		DALUser dalUser = DALUser.getInstance();
