@@ -45,7 +45,7 @@ public class User_to_Connection {
 	 * @param utc
 	 */
 	public User_to_Connection(Entity utc) {
-		this.usr_id 		= (String)utc.getProperty(User.USER_ID);
+		this.usr_id 		= (String)utc.getKey().toString();
 		this.utc_date 		= (Date)utc.getProperty(USER_TO_CONNECTION_DATE);
 		this.utc_id     	= (String)utc.getProperty(USER_TO_CONNECTION_ID);
 		this.utc_is_deleted = (Boolean)utc.getProperty(USER_TO_CONNECTION_IS_DELETED);
@@ -56,7 +56,7 @@ public class User_to_Connection {
 	 * @return
 	 */
 	public Entity toDatastoreEntity() {
-		Entity utc = new Entity(USER_TO_CONNECTION, USER_TO_CONNECTION_ID);
+		Entity utc = new Entity(USER_TO_CONNECTION);
 		utc.setProperty(USER_TO_CONNECTION_ID, this.utc_id);
 		utc.setProperty(User.USER_ID, this.usr_id);
 		utc.setProperty(USER_TO_CONNECTION_DATE, this.utc_date);

@@ -74,7 +74,7 @@ public class Flight {
 	 * Construct a Flight object from a datastore entity flight
 	 */
 	public Flight(Entity fgt) {
-		this.fgt_id              = (String)fgt.getProperty(FLIGHT_ID);
+		this.fgt_id              = (String)fgt.getKey().toString();
 		this.fgt_date_arrival    = (Date)fgt.getProperty(FLIGHT_DATE_ARRIVAL);
 		this.fgt_date_departure  = (Date)fgt.getProperty(FLIGHT_DATE_DEPARTURE);
 		this.fgt_going_to_id     = (String)fgt.getProperty(FLIGHT_GOING_TO_ID);
@@ -91,7 +91,7 @@ public class Flight {
 	 */
 	public Entity toDatastoreEntity() {
 		
-		Entity flight = new Entity(FLIGHT, this.fgt_id);
+		Entity flight = new Entity(FLIGHT);
 		
 		flight.setProperty(FLIGHT_ID, Flight.FLIGHT_ID);
 		flight.setProperty(FLIGHT_DATE_ARRIVAL, this.fgt_date_arrival);
