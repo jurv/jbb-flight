@@ -96,13 +96,13 @@ public class DALFlight {
 	 * @param id Flight's Unique identifier
 	 * @return
 	 */
-	public Flight GetFlightById(Key id) {
+	public Flight GetFlightById(long id) {
 		
 		Query q =  new Query("Flight")
         	.setFilter(new FilterPredicate(
         					Entity.KEY_RESERVED_PROPERTY,
         					Query.FilterOperator.EQUAL, 
-        					id)
+        					KeyFactory.createKey("Flight", id))
                        );
 		PreparedQuery pq = datastore.prepare(q);
 

@@ -94,13 +94,13 @@ public class DALUser {
 	 * @param id User's Unique identifier
 	 * @return
 	 */
-	public User GetUserById(Key id) {
+	public User GetUserById(long id) {
 		
 		Query q =  new Query("User")
         	.setFilter(new FilterPredicate(
         					Entity.KEY_RESERVED_PROPERTY,
         					Query.FilterOperator.EQUAL, 
-        					id)
+        					KeyFactory.createKey("User", id))
                        );
 		PreparedQuery pq = datastore.prepare(q);
 
