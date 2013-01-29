@@ -46,7 +46,7 @@ public class DALUser_to_FlightSearch {
 	public List<User_to_FlightSearch> GetAllUser_to_FlightSearchs() {
 		
 		Query q = new Query("User_to_FlightSearch")
-			.setFilter(new FilterPredicate("utf_is_deleted", FilterOperator.NOT_EQUAL, false));
+			.setFilter(new FilterPredicate("utf_is_deleted", FilterOperator.EQUAL, false));
 		
 		PreparedQuery pq = datastore.prepare(q);
 		

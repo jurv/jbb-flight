@@ -52,7 +52,7 @@ public class DALUser_to_Connection {
 	public List<User_to_Connection> GetAllUser_to_Connections() {
 		
 		Query q = new Query("User_to_Connection")
-			.setFilter(new FilterPredicate("utc_is_deleted", FilterOperator.NOT_EQUAL, false));
+			.setFilter(new FilterPredicate("utc_is_deleted", FilterOperator.EQUAL, false));
 		
 		PreparedQuery pq = datastore.prepare(q);
 		

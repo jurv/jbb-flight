@@ -53,7 +53,7 @@ public class DALFlight {
 	public List<Flight> GetAllFlights() {
 		
 		Query q = new Query("Flight")
-			.setFilter(new FilterPredicate("fgt_is_deleted", FilterOperator.NOT_EQUAL, false));
+			.setFilter(new FilterPredicate("fgt_is_deleted", FilterOperator.EQUAL, false));
 		
 		PreparedQuery pq = datastore.prepare(q);
 		
